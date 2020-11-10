@@ -26,13 +26,14 @@ which_PTF <- function(predictor, target = NULL) {
         # CHECKS ----
         ## for predictor
 
-        if(!any(c(is.data.frame(predictor), is.vector(predictor), is.data.table(predictor)))){stop("predictor has to be class vector, data.frame or data.table ")}
-
-        if(all(is.character(predictor))!=TRUE){stop("argument predictor has to be a character")}
+        if(!any(c(is.data.frame(predictor), is.vector(predictor), is.data.table(predictor)))){stop("predictor has to be class vector, data.frame or data.table ")
+        }
+        if(is.vector(predictor) & all(is.character(predictor))!=TRUE){stop("argument predictor has to be a character")
+        }
 
         if(is.data.table(predictor) | is.data.frame(predictor) ){
                 predictor <- colnames(predictor)
-                if(is.null(colnames(predictor))){stop("provide column names for the data table/data frame")}
+                if(is.null(predictor)){stop("provide column names for the data table/data frame")}
         }else if(is.vector(predictor) & is.null(names(predictor)) != TRUE ){
                 predictor <- names(predictor)
         }else if(is.vector(predictor) & is.null(names(predictor)) == TRUE ){
@@ -40,7 +41,7 @@ which_PTF <- function(predictor, target = NULL) {
         }else(stop("check that colnames or names of the predictor variable agree."))
 
 
-        if(sum(c("USSAND", "USSILT","USCLAY", "DEPTH_M")%in%predictor)!=2){stop("predictor has to have PSD and DEPTH_M")}
+        if(sum(c("USSAND", "USSILT","USCLAY", "DEPTH_M")%in%predictor)!=4){stop("predictor has to have USSAND, USSILT, USCLAY, and DEPTH_M as columnnames")}
 
         ## target
         if(all(is.character(target))!=TRUE ){stop("argument target has to be a character or default NULL")}
