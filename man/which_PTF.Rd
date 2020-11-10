@@ -34,5 +34,5 @@ THS  FC_2    FC    WP AWC_2   AWC    KS    VG   MVG
 \author{
 Tobias KD Weber, \email{tobias.weber@uni-hohenheim.de}
 
-Brigitta Szabo, \email{toth.brigitta@agrar.mta.hu}
+Brigitta Szabo, \email{toth.brigitta@atk.hu}
 }
