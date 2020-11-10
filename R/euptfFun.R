@@ -109,10 +109,10 @@ euptfFun <- function(ptf, predictor, target = "THS", query = "predictions", quan
         # predict
         result <- switch(query,
                          "predictions" = {
-                                 ptfFun.pred(ptf.object = ptf_object, df = predictor)
+                                 suppressWarnings(ptfFun.pred(ptf.object = ptf_object, df = predictor) )
                          },
                          "quantiles" = {
-                                 ptfFun.quant(ptf.object = ptf_object, df = predictor, quantiles)
+                                 suppressWarnings(ptfFun.quant(ptf.object = ptf_object, df = predictor, quantiles))
                          })
 
 

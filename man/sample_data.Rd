@@ -5,25 +5,28 @@
 \alias{sample_data}
 \title{An example data set from the EU-HYDI database.}
 \format{
-A data table with 10 rows and 10 columns
+A data table with 2231 rows and 36 columns
 \itemize{
+  \item PROFILE_ID: numeric, unique ID identifying a profile.
   \item SAMPLE_ID: numeric, unique ID identifying a the sample.
-  \item DEPTH_M: [cm], numeric.
-  \item USSAND: [g/100 g], numeric, sand content of the soils
-  \item USSILT: [g/100 g], numeric, silt content of the soils
-  \item USCLAY: [g/100 g], numeric, clay content of the soils  
-  \item OC: [g/100 g] numeric, soil organic carbon.
   \item BD: numeric, bulk density in g/cm^-3.
-  \item PH_H2O: [-], numeric.
-  \item CACO3: [g/100 g], numeric.
-  \item CEC: [meq/100 g], numeric, cation exchange capacity.
+  \item OC: [g/kg] numeric, soil organic carbon.
+  \item PH_H2O: [-], numeric
+  \item CEC: numeric, cation exchange capacity.
+  \item USSAND: [%], numeric, sand content of the soils
+  \item USSILT: [%], numeric, silt content of the soils
+  \item USCLAY: [%], numeric, clay content of the soils
+  \item TEXT_FAO: factor, giving the texture according to the FAO classes.
+  \item TEXT_US: factor, texture classes of the US soil taxonomy.
+  \item TOPSOIL: logical, TRUE: sample is from the TOPSOIL, FALSE: sample is from the SUBSOIL.
+  \item DEPTH_M:
 }
 }
 \usage{
 data(sample_data)
 }
 \description{
-A data.frame with 10 observations. The data can be used as a template for guidance in data preparation.
+A data.frame with 2231 observations. The data can be used as a template for guidance in data preparation.
 It is a subset of the Hungarian dataset in the EU-HYDI database. >insert 2 references<
 }
 \references{
