@@ -1,7 +1,7 @@
 Package: euptf2
 Type: Package
 Title: Prediction of soil hydraulic properties with random forest based pedotransfer functions (Title Case)
-Version: 0.1.0
+Version: 0.2.0
 Author: Tobias KD Weber
 Maintainer: Tobias KD Weber <tobias.weber@uni-hohenheim.de>
 Description: The euptf package  provides  pedotransfer  functions  (PTFs) for  the  prediction  of  hydraulic  properties in  European  soils.   
