@@ -15,7 +15,7 @@
 #'
 #' @references
 #' @author Tobias KD Weber, \email{tobias.weber@uni-hohenheim.de}
-#' @author Brigitta Szabo, \email{toth.brigitta@agrar.mta.hu}
+#' @author Brigitta Szabo, \email{toth.brigitta@atk.hu}
 #' @import plyr
 #' @examples
 #' \dontrun{use_these <- which_PTF(predictor = c("USSAND", "USSILT","USCLAY" , "DEPTH_M"), target = c("THS", "VG"))}
