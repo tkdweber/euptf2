@@ -11,19 +11,19 @@
 #' @format A data table with 32 rows and 10 variables
 #' \itemize{
 #'   \item Predictor_variables: combination of predictor variables
-#'   \item THS: combination of predictor variables
+#'   \item THS: saturated water content, as the measured soil water content at a pressure head of 0 cm
 #'   \item FC_2: Field capacity, as the measured soil water content at a pressure head of 330 cm.
-#'   \item FC_2: Field capacity, as the measured soil water content at a pressure head of 60 cm.
+#'   \item FC_2: Field capacity, as the measured soil water content at a pressure head of 100 cm.
 #'   \item WP: Wilting point as the measured soil water content at a pressure head of 15000 cm.
 #'   \item AWC_2: Available water content as the difference in soil water content between FC_2 and WP.
 #'   \item AWC: Available water content as the difference in soil water content between FC and WP.
-#'   \item KS: Saturated hydraulic conductivity  (\insertCite{vanGenuchten.1980}{euptf2}).
-#'   \item VG: van-Genuchten model parameters (\insertCite{Mualem.1976}{euptf2}, \insertCite{vanGenuchten.1980}{euptf2}).
-#'   \item MVG: Mualem-van-Genuchten model parameters.
+#'   \item KS: Saturated hydraulic conductivity.
+#'   \item VG: van-Genuchten model parameters  (\insertCite{vanGenuchten.1980}{euptf2}).
+#'   \item MVG: Mualem-van-Genuchten model parameters (\insertCite{Mualem.1976}{euptf2}, \insertCite{vanGenuchten.1980}{euptf2}).
 #' }
 #' @author
 #' Tobias KD Weber <\email{tobias.weber@uni-hohenheim.de}>
-#' Brigitta Toth <\email{toth.brigitta@agrar.mta.hu}>
+#' Brigitta Szabo <\email{toth.brigitta@atk.hu}>
 #' Melanie Weynants <\email{melanie.weynants@ec.europa.eu}>
 
 "suggested_PTF"

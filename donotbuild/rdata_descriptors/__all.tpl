@@ -12,7 +12,7 @@
 #' @keywords datasets
 #'
 #' @author
-#' Brigitta Szabo <\email{toth.brigitta@agrar.mta.hu}>
+#' Brigitta Szabo <\email{toth.brigitta@atk.hu}>
 #' Tobias KD Weber <\email{tobias.weber@uni-hohenheim.de}>
 #'
 #' @examples

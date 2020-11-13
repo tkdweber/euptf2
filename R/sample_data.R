@@ -9,19 +9,16 @@
 #'
 #' @format A data table with 2231 rows and 36 columns
 #' \itemize{
-#'   \item PROFILE_ID: numeric, unique ID identifying a profile.
 #'   \item SAMPLE_ID: numeric, unique ID identifying a the sample.
-#'   \item BD: numeric, bulk density in g/cm^-3.
-#'   \item OC: [g/kg] numeric, soil organic carbon.
-#'   \item PH_H2O: [-], numeric
-#'   \item CEC: numeric, cation exchange capacity.
-#'   \item USSAND: [%], numeric, sand content of the soils
-#'   \item USSILT: [%], numeric, silt content of the soils
-#'   \item USCLAY: [%], numeric, clay content of the soils
-#'   \item TEXT_FAO: factor, giving the texture according to the FAO classes.
-#'   \item TEXT_US: factor, texture classes of the US soil taxonomy.
-#'   \item TOPSOIL: logical, TRUE: sample is from the TOPSOIL, FALSE: sample is from the SUBSOIL.
-#'   \item DEPTH_M:
+#'   \item DEPTH_M: [cm], numeric, mean soil depth.
+#'   \item USSAND: [g / 100 g], numeric, sand content of the soil.
+#'   \item USSILT: [g / 100 g], numeric, silt content of the soil.
+#'   \item USCLAY: [g / 100 g], numeric, clay content of the soil.
+#'   \item OC: [g / 100 g] numeric, soil organic carbon content.
+#'   \item BD: [g/cm^-3], numeric, bulk density of the soil.
+#'   \item PH_H2O: [-], numeric, soil pH.
+#'   \item CACO3: [g / 100 g], numeric, calcium carbonate content of the soil.
+#'   \item CEC: [meq / 100 g], numeric, cation exchange capacity.
 #' }
 #' @references
 #' \insertRef{Szabo.2020}{euptf2}
