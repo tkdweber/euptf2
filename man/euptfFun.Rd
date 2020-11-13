@@ -39,3 +39,8 @@ Wrapper to predict and calculate prediction uncertainty for the soil hydraulic p
 data(sample_data)
 result <- euptfFun(ptf, predictor = sample_data, target = "THS", query = "predictions", quantiles = c(.05,.25,.5,.75,.95))
 }
+\references{
+{
+  \insertRef{Szabo.2020}{euptf2}
+}
+}

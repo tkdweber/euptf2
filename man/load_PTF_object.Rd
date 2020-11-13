@@ -16,7 +16,8 @@ The loaded object as specified by \code{x}.
 \description{
 The function is intended for internal use in \code{euptfFun}. The aim is to load the
 object from the data provided in the package, given a specific target variable ptf number combination.
-No are made on the consistency of the argument, because this is done in euptfFun
+No are made on the consistency of the argument, because this is done in euptfFun. 
+Loaded algorithm provides possibility to use it as a ranger.forest object in the ranger package.
 }
 \examples{
 \dontrun{

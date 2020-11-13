@@ -14,7 +14,7 @@
 #' @author
 #' Brigitta Szabo <\email{toth.brigitta@agrar.mta.hu}>
 #' Tobias KD Weber <\email{tobias.weber@uni-hohenheim.de}>
-#'
+#' @importFrom Rdpack reprompt
 #' @examples
 #' data(VG_PTF09)
 #' str(VG_PTF09)

@@ -12,9 +12,9 @@
 #' @keywords datasets
 #'
 #' @author
-#' Brigitta Szabo <\email{toth.brigitta@atk.hu}>
+#' Brigitta Szabo <\email{toth.brigitta@agrar.mta.hu}>
 #' Tobias KD Weber <\email{tobias.weber@uni-hohenheim.de}>
-#'
+#' @importFrom Rdpack reprompt
 #' @examples
 #' data($target_PTF)
 #' str($target_PTF)

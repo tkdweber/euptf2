@@ -1,15 +1,13 @@
-citHeader('To cite the 'euptf2' package in publications use:')
+citHeader('To cite the euptf2 package in publications use:')
 
 citEntry(
-  entry = 'article',
-  title	= 'Updated European hydraulic pedotransfer functions with communicated uncertainties in the predicted variables (euptfv2)',
-  author       = personList(as.person('Brigitta Szabó'),
-                   as.person('Mélanie Weynants'),
-				   as.person('Tobias Karl David Weber'),
+  entry        = 'Article',
+  author       = "Brigitta Szabo, Melanie Weynants and Tobias Karl David Weber",
+    title	= 'Updated European hydraulic pedotransfer functions with communicated uncertainties in the predicted variables (euptfv2)',
   journal = 'Geoscientific Model Development',
   year = '2020',
   doi = '10.5194/gmd-2020-36',
-  textVersion = paste('Szabó, Brigitta; Weynants; Mélanie and Weber, Tobias Karl David (2020),',
-		'Updated European hydraulic pedotransfer functions with communicated uncertainties in the predicted variables (euptfv2),',
-		'Geoscientific Model Development. doi:10.5194/gmd-2020-36')
+  textVersion = paste('Szab0, Brigitta; Weynants; Melanie and Weber, Tobias Karl David (2020),',
+		'Updated European hydraulic pedotransfer functions with communicated uncertainties in the predicted variables (euptfv2).',
+		'Geoscientific Model Development.','10.5194/gmd-2020-36')
 )

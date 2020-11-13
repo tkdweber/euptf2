@@ -18,6 +18,10 @@
 #'         \item a data.frame with predicted target variables if no quantiles are predicted.
 #'         \item a list with predicted target variables if quantiles are predicted.
 #' }
+#' @importFrom Rdpack reprompt
+#' @references{
+#'   \insertRef{Szabo.2020}{euptf2}
+#' }
 #' @examples
 #' data(sample_data)
 #' result <- euptfFun(ptf, predictor = sample_data, target = "THS", query = "predictions", quantiles = c(.05,.25,.5,.75,.95))
@@ -112,7 +116,7 @@ euptfFun <- function(ptf, predictor, target = "THS", query = "predictions", quan
                                  suppressWarnings(ptfFun.pred(ptf.object = ptf_object, df = predictor) )
                          },
                          "quantiles" = {
-                                 suppressWarnings(ptfFun.quant(ptf.object = ptf_object, df = predictor, quantiles))
+                                 suppressWarnings(ptfFun.quant(ptf.object = ptf_object, df = predictor, quantiles = quantiles))
                          })
 
 

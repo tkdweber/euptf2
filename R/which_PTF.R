@@ -9,8 +9,8 @@
 #'
 #' @return A vector of length \code{m}, with suggested PTF to use.
 #'
-#' @details (insert a table for explanations, hereof. or, insert a link elsewehere)
-#' PSD, DEPTH_M, OC, BD, CACO3, PH_H2O, CEC
+#' @details The following columns in the predictor argument can be present, the first 4 are required for the code to work. The names are case sensitive.
+#' USSAND, USSILT, USCLAY, DEPTH_M, OC, BD, CACO3, PH_H2O, CEC
 #' THS  FC_2    FC    WP AWC_2   AWC    KS    VG   MVG
 #'
 #' @references
