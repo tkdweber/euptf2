@@ -112,7 +112,7 @@ euptfFun <- function(ptf, predictor, target = "THS", query = "predictions", quan
                                  suppressWarnings(ptfFun.pred(ptf.object = ptf_object, df = predictor) )
                          },
                          "quantiles" = {
-                                 suppressWarnings(ptfFun.quant(ptf.object = ptf_object, df = predictor, quantiles))
+                                 suppressWarnings(ptfFun.quant(ptf.object = ptf_object, df = predictor, quantiles = quantiles))
                          })
 
 
