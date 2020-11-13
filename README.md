@@ -9,7 +9,7 @@ data(sample_data)
 ```
 and an R script which shows some examples on how to apply the PTFs in R. 
 
-As an alternate a web interface (https://ptfinterface.rissac.hu) facilitates too easy application of the updated prediction algorithms. The R scripts used to derive the updated European prediction algorithms are available from [here](https://github.com/TothSzaboBrigitta/euptfv2).
+Alternatively, a web interface (https://ptfinterface.rissac.hu) facilitates easy application of the updated prediction algorithms, too. The R scripts used to train, tune, and build the updated European prediction random forest algorithms are available from [here](https://github.com/TothSzaboBrigitta/euptfv2).
 
 ***Please cite as:***
 
