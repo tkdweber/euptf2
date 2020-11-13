@@ -23,9 +23,9 @@ ptfFun.quant <- function(ptf.object, df, quantiles = c(.05,.25,.5,.75,.95)){
      depth <- function(this) ifelse(is.list(this), 1L + max(sapply(this, depth)), 0L)
 
      if(depth(ptf.object)==5){
-          result <- lapply(ptf.object, function(x) {predict(x, data = df, type = "quantiles", quantiles)$predictions})
+          result <- lapply(ptf.object, function(x) {predict(x, data = df, type = "quantiles", quantiles = quantiles)$predictions})
      }else{
-          result <- predict(ptf.object, data = df, type = "quantiles", quantiles)$predictions
+          result <- predict(ptf.object, data = df, type = "quantiles", quantiles = quantiles)$predictions
      }
      return(result)
 }
