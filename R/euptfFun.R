@@ -1,6 +1,6 @@
 #' Wrapper to predict and calculate prediction uncertainty for the soil hydraulic properties.
 #'
-#' @param ptf A character specifying the ptf. Permissible are "ptf01" "ptf02", ...., "ptf32".
+#' @param ptf A character specifying the ptf. Permissible are "PTF01" "PTF02", ...., "PTF32".
 #' @param predictor A data.frame or data.table of dimension \code{m x n}, with \code{m} observations and \code{n} predictor variables.
 #' The column names specify the names of the predictor variables. At least \code{DEPTH_M} and \code{USSAND},\code{USSILT}, \code{USCLAY} have to be provided.
 #' If in doubt, which PTF to select, use the function \code{which_PTF} first, to determine the suggested ptf, based on the available predictor variable.
@@ -11,7 +11,7 @@
 #'      > insert table of which ones are available < or do that in details
 #'
 #' @param query either predictions for predictions of the parameters or quantiles for prediction of the uncertainties.
-#' @param target either predictions for predictions of the parameters or quantiles for prediction of the uncertainties.
+#' @param target one of the soil hydraulic parameters: "THS", "FC_2", "FC", "WP", "AWC_2", "AWC", "KS", "VG", "MVG".
 #' @param quantiles a vector of numeric values for calculating the quantiles at
 #' @return
 #'  \itemize{
@@ -130,7 +130,7 @@ euptfFun <- function(ptf, predictor, target = "THS", query = "predictions", quan
                                          res          <- ptf.transFun(result)
 
                                          if(target=="MVG"){
-                                                 colnames(res)<- c("THS", "THR", "ALP", "N", "K0", "TAU")
+                                                 colnames(res)<- c("THS", "THR", "ALP", "N", "K0", "L")
                                          }else{
                                                  colnames(res)<- c("THS", "THR", "ALP", "N")
                                          }
