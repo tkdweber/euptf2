@@ -1,6 +1,6 @@
 Package: euptf2
 Type: Package
-Title: Prediction of soil hydraulic properties with random forest based pedotransfer functions (Title Case)
+Title: R package of updated European hydraulic pedotransfer functions (euptf2)
 Version: 0.2.0
 Author@R:   c(person(given = "Tobias Karl David",
            family = "Weber",
@@ -12,7 +12,7 @@ Author@R:   c(person(given = "Tobias Karl David",
            role = "ctb",
            comment = c(ORCID = "0000-0002-1447-0105")),
     person(given = "Brigitta",
-           family = "Szabo",
+           family = "Szabó",
            role = "ctb",
            comment = c(ORCID = "0000-0003-1485-8908")))
 Maintainer: Tobias KD Weber <tobias.weber@uni-hohenheim.de>
