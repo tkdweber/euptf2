@@ -15,7 +15,7 @@ Alternatively, a web interface (https://ptfinterface.rissac.hu) facilitates easy
 
 Szabó, B., Weynants, M. and Weber, T. K. D. (2020) Updated European hydraulic pedotransfer functions with communicated uncertainties in the predicted variables (euptfv2). Submitted to Geoscientific Model Development.
 
-Weber, T. K. D. (2020) SPECIFY TITLE, suggestion: R package of updated European hydraulic pedotransfer functios (euptf2).
+Weber, T. K. D., Weynants, M., Szabó, B. (2020) R package of updated European hydraulic pedotransfer functios (euptf2).
 
 
 
