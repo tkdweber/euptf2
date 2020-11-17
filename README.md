@@ -7,7 +7,12 @@ The package contains a sample input dataset
 ```{r eval=FALSE}
 data(sample_data)
 ```
-and an R script which shows some examples on how to apply the PTFs in R. 
+and a vignette (https://github.com/tkdweber/euptf2/tree/master/vignettes)
+
+```{r eval=FALSE}
+??euptf2
+```
+shows some examples on how to apply the PTFs in R. 
 
 Alternatively, a web interface (https://ptfinterface.rissac.hu) facilitates easy application of the updated prediction algorithms, too. The R scripts used to train, tune, and build the updated European prediction random forest algorithms are available from [here](https://github.com/TothSzaboBrigitta/euptfv2).
 
