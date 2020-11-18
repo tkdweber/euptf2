@@ -3,6 +3,14 @@
 
 The euptf package  provides  pedotransfer  functions  (PTFs) for  the  prediction  of  hydraulic  properties in  European  soils. The  PTFs  were  trained  and  validated  on  subsets  of  the  European  Hydropedological Data Inventory (Weynants et al., 2013, EU-HYDI). The methodology and the results are published in the Journal Geoscientific Model Development (Szabó et al., 2020).
 
+The development version of the package can be installed from GitHub after opening an R session and typing the following at the command line:
+
+```{r eval=FALSE}
+# install the devtools package if not yet done:
+if (!require("devtools")){install.packages("devtools"); library(devtools)}
+if (!require("euptf2")){devtools::install_github("tkdweber/euptf2"); library(euptf2)}
+```
+
 The package contains a sample input dataset
 ```{r eval=FALSE}
 data(sample_data)
