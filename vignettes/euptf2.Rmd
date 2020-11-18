@@ -26,8 +26,8 @@ Install the development version from GitHub:
 
 ```{r eval=FALSE}
 # install the devtools package if not yet done:
-if (!"devtools" %in% IP){install.packages("devtools")}
-devtools::install_github("tkdweber/euptf2")
+if (!require(devtools)){install.packages("devtools")}
+if (!require(euptf2)){devtools::install_github("tkdweber/euptf2")}
 ```
 
 ## Usage
