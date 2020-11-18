@@ -25,7 +25,7 @@ sample_data
 #  
 #  # import data from xlsx file with package xlsx:
 #  # install the xlsx package if not yet done:
-#  if (!"xlsx" %in% IP){install.packages("xlsx")}
+#  if (!require("xlsx")){install.packages("xlsx"); library(xlsx)}
 #  # load the package:
 #  library("xlsx")
 #  # import data from xlsx file:
@@ -79,7 +79,7 @@ pred_KS
 #  
 #  # example to save predicted values to xlsx file:
 #  # install the openxlsx package if not yet done:
-#  if (!"openxlsx" %in% IP){install.packages("openxlsx")}
+#  if (!require("openxlsx")){install.packages("openxlsx"); library(openxlsx)}
 #  library(openxlsx)
-#  write.xlsx(data.KS.VG, file = "pred_THS.xlsx")
+#  write.xlsx(pred_THS, file = "pred_THS.xlsx")
 
