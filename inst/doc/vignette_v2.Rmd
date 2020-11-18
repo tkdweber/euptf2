@@ -1,0 +1,162 @@
+---
+title: "R package of updated European hydraulic pedotransfer functions (euptf2)"
+output: rmarkdown::html_vignette
+author: "Tobias KD Weber, Melanie Weynants, Brigitta Szabó"
+date: "17 November 2020"
+vignette: >
+  %\VignetteIndexEntry{vignette_v2}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The `euptf2` package provides pedotransfer functions (PTFs) for the prediction of hydraulic properties in European soils. The PTFs were trained and validated on subsets of the European Hydropedological Data Inventory (Weynants et al., 2013, EU-HYDI). The methodology and the results are published in the Journal Geoscientific Model Development (Szabó et al., 2020).
+
+This vignette is a short tutorial explaining how to use the PTFs and how to export the results outside R for non-R users.
+
+## Installation
+
+Install the development version from GitHub:
+
+```{r eval=FALSE}
+# install the devtools package if not yet done:
+if (!require("devtools")){install.packages("devtools"); library(devtools)}
+if (!require("euptf2")){devtools::install_github("tkdweber/euptf2"); library(euptf2)}
+```
+
+## Usage
+
+The predictions can be performed through the following steps.
+
+Load the package:
+
+```{r setup}
+# load the package:
+library(euptf2)
+```
+
+**1. Data preparation** Before using the PTFs you need to format your data so that the package's functions can access them. An example data frame is provided:
+
+```{r eval=FALSE}
+data(sample_data)
+```
+```{r eval=TRUE}
+sample_data
+```
+
+When creating a new data frame, the available variables should be named as in the example. If one of the variables has no observations, it can be omitted from the data frame. Missing values should be assigned value NA. The name, unit, data type of soil properties in the dataset should be as given in Szabó et al. (2020).
+
+For non R users, the data can also be prepared in an other software and imported into R. In that case, the names of the columns have to be respected in the source file. For example, data prepared in an Excel workbook named myworksheet.xlsx could be imported either by first saving the relevant Excel worksheet in comma separated table, for instance myworksheet.csv or by importing them directly:
+
+```{r eval=FALSE}
+# import data from csv file:
+mydata <- read.csv("myworksheet.csv")
+
+# import data from xlsx file with package xlsx:
+# install the xlsx package if not yet done:
+if (!"xlsx" %in% IP){install.packages("xlsx")}
+# load the package:
+library("xlsx")
+# import data from xlsx file:
+mydata <- read.xlsx("myworkbook.xlsx", sheetName="myworksheet")
+# see ?read.xlsx for more options
+```
+
+
+**2. Choosing the right PTF** The function which_PTF() returns a suggested PTF based on the available (that is provided) predictor variables and optionally a specified target variable. The following soil hydraulic parameters can be computed with the package:
+
+- water content at saturation (THS) [cm3/cm3]: water content at 0 cm matric potential head;
+- water content at field capacity at
+	-100 cm matric potential head (FC_2) [cm3/cm3], and
+	-330 cm matric potential head (FC) [cm3/cm3];
+- water content at wilting point (WP) [cm3/cm3]: water content at -15,000 cm matric potential head;
+- plant available water content (AWC) [cm3/cm3] based on the following equations:
+
+	AWC=FC-WP									(1)
+	
+	AWC_2=FC_2-WP									(2)
+- saturated hydraulic conductivity (KS) [cm/day]: hydraulic conductivity at 0 cm matric potential head;
+- Mualem-van Genuchten model parameters (VG; for the water retention model only, MVG; for the water retention and hydraulic conductivity model).
+
+```{r eval=TRUE}
+# check which_PTF to use to predict THS based on the predictor variables available in sample_data
+which_PTF(predictor= sample_data, target = c("THS"))
+
+# check which_PTF to use to predict multiple soil hydraulic properties
+which_PTF(predictor= sample_data, target = c("THS", "FC", "WP", "KS", "VG", "MVG"))
+```
+
+The result is conditional to the provided set of predictor variables such as USSAND, USSILT, USCLAY and DEPTH_M. The suggested_PTF data lists the recommended pedotransfer functions (PTF) by predicted soil hydraulic property and available predictor variables (Table 11 in Szabó et al. (2020)):
+
+```{r eval=FALSE}
+data(suggested_PTF)
+suggested_PTF
+```
+
+**3. Running the PTFs** Once the data are ready and the PTF has been chosen, it can be called with function euptfFun. The output of the function varies from one PTF to another, depending if prediction of quantiles are required. Let's take some examples that can illustrate the different cases and run them on the example dataset sample_data.
+
+Parameter estimation:
+
+```{r eval=TRUE}
+# predict parameters of the van Genuchten model (VG)
+pred_VG <- euptfFun(ptf = "PTF11", predictor = sample_data, target = "VG", query = "predictions")
+pred_VG
+
+# predict VG with predefined quantiles
+pred_VG_q <- euptfFun(ptf = "PTF11", predictor = sample_data, target = "VG", query = "quantiles", quantiles = c(0.1, 0.5, 0.9))
+pred_VG_q
+
+# please note that output is list, can be formatted to data frame:
+pred_VG_q.df <- as.data.frame(pred_VG_q)
+
+# predict parameters of the Mualem-van Genuchten model (MVG)
+pred_MVG <- euptfFun(ptf = "PTF05", predictor = sample_data, target = "MVG", query = "predictions")
+pred_MVG
+```
+
+Point estimation:
+
+```{r eval=TRUE}
+# predict saturated water content (THS)
+pred_THS <- euptfFun(ptf = "PTF03", predictor = sample_data, target = "THS", query = "predictions")
+pred_THS
+
+# predict THS with predefined quantiles
+pred_THS_q <- euptfFun(ptf = "PTF03", predictor = sample_data, target = "THS", query = "quantiles", quantiles = c(0.05, 0.5, 0.95))
+pred_THS_q
+
+# predict saturated hydraulic conductivity (KS)
+pred_KS <- euptfFun(ptf = "PTF05", predictor = sample_data, target = "KS", query = "predictions")
+pred_KS
+```
+
+**4. Exporting the results**
+For non-R users, the results can be exported for use with other software, either as text files or directly in Excel. For example, the two ways of predicting the saturated water content can be exported as a table:
+
+```{r eval=FALSE}
+# example to save the predicted values to a csv file:
+write.csv(pred_THS, file = "pred_THS.csv", row.names = FALSE)
+# see ?write.csv for additional options
+
+# example to save predicted values to xlsx file:
+# install the openxlsx package if not yet done:
+if (!"openxlsx" %in% IP){install.packages("openxlsx")}
+library(openxlsx)
+write.xlsx(data.KS.VG, file = "pred_THS.xlsx")
+```
+
+
+
+
+
+***References***
+
+Szabó B., Weynants M., Weber TKD (2020). “Updated European hydraulic pedotransfer functions with communicated uncertainties in the predicted variables (euptfv2).” Geoscientific Model Development Discussions, 2020, 1–33. doi: 10.5194/gmd-2020-36, https://gmd.copernicus.org/preprints/gmd-2020-36/.
+
+Weynants, M., Montanarella, L., Tóth, G., Arnoldussen, A., Anaya Romero, M., Bilas, G., Borresen, T., Cornelis, W., Daroussin, J., Gonçalves, M. D. C., Haugen, L.-E., Hennings, V., Houskova, B., Iovino, M., Javaux, M., Keay, C. A., Kätterer, T., Kvaerno, S., Laktinova, T., Lamorski, K., Lilly, A., Mako, A., Matula, S., Morari, F., Nemes, A., Patyka, N. V., Romano, N., Schindler, U., Shein, E., Slawinski, C., Strauss, P., Tóth, B. and Woesten, H.: European HYdropedological Data Inventory (EU-HYDI), EUR – Scientific and Technical Research series – ISSN 1831-9424, Luxembourg., 2013.
