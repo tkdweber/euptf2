@@ -4,7 +4,7 @@ output: rmarkdown::html_vignette
 author: "Tobias KD Weber, Melanie Weynants, Brigitta Szabó"
 date: "17 November 2020"
 vignette: >
-  %\VignetteIndexEntry{R package of updated European hydraulic pedotransfer functions (euptf2)}
+  %\VignetteIndexEntry{vignette_v2}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -26,14 +26,8 @@ Install the development version from GitHub:
 
 ```{r eval=FALSE}
 # install the devtools package if not yet done:
-<<<<<<< HEAD
-if (!require(devtools)){install.packages("devtools");library(devtools)}
-if (!require(euptf2)){devtools::install_github("tkdweber/euptf2"));library(euptf)}
-
-=======
-if (!require(devtools)){install.packages("devtools")}
-if (!require(euptf2)){devtools::install_github("tkdweber/euptf2")}
->>>>>>> cf682055c4f278cf7d65914ea96d1f7e5f1da48a
+if (!"devtools" %in% IP){install.packages("devtools")}
+devtools::install_github("tkdweber/euptf2")
 ```
 
 ## Usage

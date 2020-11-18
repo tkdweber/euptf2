@@ -14,7 +14,7 @@ citEntry(
 
 citEntry(entry="Manual",
          title = "Updated European hydraulic pedotransfer functions with communicated uncertainties in the predicted variables (euptfv2)',
-         author= "Brigitta Szabo, Melanie Weynants and Tobias Karl David Weber",,
+         author= "Brigitta Szabo, Melanie Weynants and Tobias Karl David Weber",
          year  = '2020',
          note  = "R package",
 	       url = "https://github.com/tkdweber/euptf2",
