@@ -10,6 +10,12 @@ The development version of the package can be installed from GitHub after openin
 if (!require("devtools")){install.packages("devtools"); library(devtools)}
 if (!require("euptf2")){devtools::install_github("tkdweber/euptf2"); library(euptf2)}
 ```
+The content of the package can be made available by loading it into the R session:
+
+```{r eval=FALSE}
+# load the package
+library(euptf2)
+```
 
 The package contains a sample input dataset
 ```{r eval=FALSE}
