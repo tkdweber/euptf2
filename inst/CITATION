@@ -1,13 +1,27 @@
 citHeader('To cite the euptf2 package in publications use:')
 
 citEntry(
-  entry        = 'Article',
-  author       = "Brigitta Szabo, Melanie Weynants and Tobias Karl David Weber",
-    title	= 'Updated European hydraulic pedotransfer functions with communicated uncertainties in the predicted variables (euptfv2)',
-  journal = 'Geoscientific Model Development',
-  year = '2020',
-  doi = '10.5194/gmd-2020-36',
-  textVersion = paste('Szabo, Brigitta; Weynants; Melanie and Weber, Tobias Karl David (2020),',
+  entry       = 'Article',
+  author      = "Brigitta Szabó, Melanie Weynants and Tobias Karl David Weber",
+    title	    = 'Updated European hydraulic pedotransfer functions with communicated uncertainties in the predicted variables (euptfv2)',
+  journal     = 'Geoscientific Model Development',
+  year        = '2020',
+  doi         = '10.5194/gmd-2020-36',
+  textVersion = paste('Szaó, Brigitta; Weynants; Melanie and Weber, Tobias Karl David (2020),',
 		'Updated European hydraulic pedotransfer functions with communicated uncertainties in the predicted variables (euptfv2).',
 		'Geoscientific Model Development.','10.5194/gmd-2020-36')
+)
+
+citEntry(entry="Manual",
+         title = "Updated European hydraulic pedotransfer functions with communicated uncertainties in the predicted variables (euptfv2)',
+         author= "Brigitta Szabo, Melanie Weynants and Tobias Karl David Weber",,
+         year  = '2020',
+         note  = "R package",
+	       url = "https://github.com/tkdweber/euptf2",
+
+         textVersion =
+	 paste("Tobias Karl David Weber, Melanie Weynants and Brigitta Szabó (2016).",
+	       "Updated European hydraulic pedotransfer functions with communicated uncertainties in the predicted variables (euptfv2)",
+               "R package",
+	       "URL https://github.com/tkdweber/euptf2")
 )
