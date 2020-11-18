@@ -13,14 +13,14 @@ euptfFun(
 )
 }
 \arguments{
-\item{ptf}{A character specifying the ptf. Permissible are "ptf01" "ptf02", ...., "ptf32".}
+\item{ptf}{A character specifying the ptf. Permissible are "PTF01" "PTF02", ...., "PTF32".}
 
 \item{predictor}{A data.frame or data.table of dimension \code{m x n}, with \code{m} observations and \code{n} predictor variables.
 The column names specify the names of the predictor variables. At least \code{DEPTH_M} and \code{USSAND},\code{USSILT}, \code{USCLAY} have to be provided.
 If in doubt, which PTF to select, use the function \code{which_PTF} first, to determine the suggested ptf, based on the available predictor variable.
 (insert cross reference to the function, here.)}
 
-\item{target}{either predictions for predictions of the parameters or quantiles for prediction of the uncertainties.}
+\item{target}{one of the soil hydraulic parameters: "THS", "FC_2", "FC", "WP", "AWC_2", "AWC", "KS", "VG", "MVG".}
 
 \item{query}{either predictions for predictions of the parameters or quantiles for prediction of the uncertainties.}
 

@@ -1,7 +1,7 @@
 Package: euptf2
 Type: Package
 Title: R package of updated European hydraulic pedotransfer functions (euptf2)
-Version: 0.2.0
+Version: 1.0.0
 Author@R:   c(person(given = "Tobias Karl David",
            family = "Weber",
            role = c("aut", "cre"),

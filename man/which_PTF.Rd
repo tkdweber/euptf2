@@ -22,7 +22,6 @@ This is conditional to the provided set of predictor variables such as PSD and D
 \details{
 The following columns in the predictor argument can be present, the first 4 are required for the code to work. The names are case sensitive.
 USSAND, USSILT, USCLAY, DEPTH_M, OC, BD, CACO3, PH_H2O, CEC
-THS  FC_2    FC    WP AWC_2   AWC    KS    VG   MVG
 }
 \examples{
 \dontrun{use_these <- which_PTF(predictor = c("USSAND", "USSILT","USCLAY" , "DEPTH_M"), target = c("THS", "VG"))}

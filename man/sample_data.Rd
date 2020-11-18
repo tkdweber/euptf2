@@ -5,7 +5,7 @@
 \alias{sample_data}
 \title{An example data set from the EU-HYDI database.}
 \format{
-A data table with 2231 rows and 36 columns
+A data table with 10 rows and 10 columns
 \itemize{
   \item SAMPLE_ID: numeric, unique ID identifying a the sample.
   \item DEPTH_M: [cm], numeric, mean soil depth.
@@ -23,10 +23,11 @@ A data table with 2231 rows and 36 columns
 data(sample_data)
 }
 \description{
-A data.frame with 2231 observations. The data can be used as a template for guidance in data preparation.
-It is a subset of the Hungarian dataset in the EU-HYDI database. >insert 2 references<
+A data.frame with 10 observations. The data can be used as a template for guidance in data preparation.
+It is a subset of the Hungarian dataset in the EU-HYDI database (Weynants et al., 2013, Szabó et al., 2020).
 }
 \references{
 \insertRef{Szabo.2020}{euptf2}
+\insertRef{Weynants.2013}{euptf2}
 }
 \keyword{datasets}
