@@ -21,10 +21,9 @@ The package contains a sample input dataset
 ```{r eval=FALSE}
 data(sample_data)
 ```
-and a vignette (https://github.com/tkdweber/euptf2/tree/master/vignettes)
-
+and a [vignette](https://github.com/tkdweber/euptf2/tree/master/vignettes)
 ```{r eval=FALSE}
-vignette("vignette_v2", package = "euptf2")
+vignette("euptf2")
 ```
 shows some examples on how to apply the PTFs in R. 
 
@@ -32,10 +31,9 @@ Alternatively, a web interface (https://ptfinterface.rissac.hu) facilitates easy
 
 ***Please cite as:***
 
-Szabó, B., Weynants, M. and Weber, T. K. D. (2020) Updated European hydraulic pedotransfer functions with communicated uncertainties in the predicted variables (euptfv2). Geoscientific Model Development Discussions, 2020, 1–33. doi: 10.5194/gmd-2020-36, https://gmd.copernicus.org/preprints/gmd-2020-36/.
+Szabó, B., Weynants, M. and Weber, T. K. D. (2020) Updated European hydraulic pedotransfer functions with communicated uncertainties in the predicted variables (euptfv2). Geoscientific Model Development Discussions, 2020, 1–33. [doi: 10.5194/gmd-2020-36](https://doi.org/10.5194/gmd-2020-36).
 
 Weber, T. K. D., Weynants, M., Szabó, B. (2020) R package of updated European hydraulic pedotransfer functions (euptf2).
-
 
 
 *References:*
