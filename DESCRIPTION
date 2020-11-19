@@ -13,7 +13,7 @@ Author@R:   c(person(given = "Tobias Karl David",
            comment = c(ORCID = "0000-0002-1447-0105")),
     person(given = "Brigitta",
            family = "Szabó",
-           role = "ctb",
+           role = "aut",
            comment = c(ORCID = "0000-0003-1485-8908")))
 Maintainer: Tobias KD Weber <tobias.weber@uni-hohenheim.de>
 Description: The euptf package  provides  pedotransfer  functions  (PTFs) for  the  prediction  of  hydraulic  properties in  European  soils.   
