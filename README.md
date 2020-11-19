@@ -24,7 +24,7 @@ data(sample_data)
 and a vignette (https://github.com/tkdweber/euptf2/tree/master/vignettes)
 
 ```{r eval=FALSE}
-vignette("vignette_v2", package = "euptf2")
+vignette("euptf2")
 ```
 shows some examples on how to apply the PTFs in R. 
 
