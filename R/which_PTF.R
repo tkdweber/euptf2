@@ -11,7 +11,7 @@
 #'
 #' @details The following columns in the predictor argument can be present, the first 4 are required for the code to work. The names are case sensitive.
 #' USSAND, USSILT, USCLAY, DEPTH_M, OC, BD, CACO3, PH_H2O, CEC
-#' 
+#'
 #'
 #' @references
 #' @author Tobias KD Weber, \email{tobias.weber@uni-hohenheim.de}
@@ -40,12 +40,14 @@ which_PTF <- function(predictor, target = NULL) {
                 predictor <- predictor
         }else(stop("check that colnames or names of the predictor variable agree."))
 
-
         if(sum(c("USSAND", "USSILT","USCLAY", "DEPTH_M")%in%predictor)!=4){stop("predictor has to have USSAND, USSILT, USCLAY, and DEPTH_M as columnnames")}
 
+
+        predictor <- predictor[predictor %in% c("USSAND","USSILT","USCLAY","DEPTH_M","OC","BD","CACO3","PH_H2O","CEC")]
+
         ## target
-        if(all(is.character(target))!=TRUE ){stop("argument target has to be a character or default NULL")}
-        if(is.null(target)){target = c("USSAND", "USSILT","USCLAY", "DEPTH_M", "OC", "BD", "CACO3", "PH_H20", "CEC")}
+        if(all(is.character(target))!=TRUE & !is.null(target) ){stop("argument target has to be a character or default NULL")}
+        if(is.null(target)){target = c("THS",  "FC_2", "FC", "WP", "AWC_2", "AWC", "KS", "VG", "MVG")}
 
         # LOAD ----
         data("suggested_PTF", envir = environment())
@@ -63,20 +65,10 @@ which_PTF <- function(predictor, target = NULL) {
 
         query        <- do.call("rbind.fill", query)
 
-        # query.test   <- apply(query,1, function(y){
-        #         all(unlist(lapply(c("USSAND", "USSILT","USCLAY","DEPTH_M", "BD", "CACO3", "PH_H2O"), function(x){
-        #                 x%in%y[!is.na(y)]
-        #                 })
-        #
-        #
-        #                 ))
-        # })
-        #
-        # query[query.test,]
-        # DO MATHC ----
+        # DO MATCH ----
 
-        t1 <- lapply(apply(query,1, function(y){y[!is.na(y)]%in%c("USSAND", "USSILT","USCLAY","BD","DEPTH_M",  "CACO3", "PH_H2O")}), function(x) length(x)==length(c("USSAND", "USSILT","USCLAY","DEPTH_M", "BD", "CACO3", "PH_H2O")))
-        t2 <- lapply(apply(query,1, function(y){y[!is.na(y)]%in%c("USSAND", "USSILT","USCLAY","BD","DEPTH_M",  "CACO3", "PH_H2O")}), all)
+        t1 <- lapply(apply(query,1, function(y){y[!is.na(y)]%in%predictor}), function(x) length(x)==length(predictor))
+        t2 <- lapply(apply(query,1, function(y){y[!is.na(y)]%in%predictor}), all)
 
         result <- suggested_PTF[as.logical(unlist(t1)*unlist(t2)), target, with = FALSE]
 

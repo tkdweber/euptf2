@@ -16,13 +16,12 @@ euptfFun(
 \item{ptf}{A character specifying the ptf. Permissible are "PTF01" "PTF02", ...., "PTF32".}
 
 \item{predictor}{A data.frame or data.table of dimension \code{m x n}, with \code{m} observations and \code{n} predictor variables.
-The column names specify the names of the predictor variables. At least \code{DEPTH_M} and \code{USSAND},\code{USSILT}, \code{USCLAY} have to be provided.
-If in doubt, which PTF to select, use the function \code{which_PTF} first, to determine the suggested ptf, based on the available predictor variable.
-(insert cross reference to the function, here.)}
+The column names specify the names of the predictor variables. At least \emph{DEPTH_M} and \emph{USSAND},\emph{USSILT}, \emph{USCLAY} have to be provided.
+If in doubt, which PTF to select, use the function \link[euptf2]{which_PTF} first, to determine the suggested ptf, based on the available predictor variable.}
 
-\item{target}{one of the soil hydraulic parameters: "THS", "FC_2", "FC", "WP", "AWC_2", "AWC", "KS", "VG", "MVG".}
+\item{target}{one of the soil hydraulic parameters: \emph{THS}, \emph{FC_2}, \emph{FC}, \emph{WP}, \emph{AWC_2}, \emph{AWC}, \emph{KS}, \emph{VG}, or \emph{MVG}.}
 
-\item{query}{either predictions for predictions of the parameters or quantiles for prediction of the uncertainties.}
+\item{query}{either \emph{predictions} to compute the mean of the response variable or \emph{quantiles} which results in quantile predictions to describe uncertainty of the prediction.}
 
 \item{quantiles}{a vector of numeric values for calculating the quantiles at}
 }

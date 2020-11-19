@@ -1,10 +1,10 @@
 ---
-title: "R package of updated European hydraulic pedotransfer functions (euptf2)"
+title: "euptf2"
 output: rmarkdown::html_vignette
 author: "Tobias KD Weber, Melanie Weynants, Brigitta Szabó"
 date: "17 November 2020"
 vignette: >
-  %\VignetteIndexEntry{vignette_v2}
+  %\VignetteIndexEntry{euptf2}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
