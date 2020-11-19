@@ -10,9 +10,9 @@
 #'
 #'      > insert table of which ones are available < or do that in details
 #'
-#' @param query either predictions for predictions of the parameters or quantiles for prediction of the uncertainties.
+#' @param query either "predictions" to compute the mean of the response variable or "quantiles" which results quantile prediction to describe uncertainty of the prediction.
 #' @param target one of the soil hydraulic parameters: "THS", "FC_2", "FC", "WP", "AWC_2", "AWC", "KS", "VG", "MVG".
-#' @param quantiles a vector of numeric values for calculating the quantiles at
+#' @param quantiles a vector of numeric values for calculating the quantiles at 
 #' @return
 #'  \itemize{
 #'         \item a data.frame with predicted target variables if no quantiles are predicted.
