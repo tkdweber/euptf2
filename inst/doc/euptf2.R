@@ -1,25 +1,25 @@
-## ---- include = FALSE----------------------------------------------------------------------------------------------------------------------------------------------
+## ---- include = FALSE---------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 
-## ----eval=FALSE----------------------------------------------------------------------------------------------------------------------------------------------------
+## ----eval=FALSE---------------------------------------------------------------
 #  # install the devtools package if not yet done:
 #  if (!require("devtools")){install.packages("devtools"); library(devtools)}
 #  if (!require("euptf2")){devtools::install_github("tkdweber/euptf2"); library(euptf2)}
 
-## ----setup---------------------------------------------------------------------------------------------------------------------------------------------------------
+## ----setup--------------------------------------------------------------------
 # load the package:
 library(euptf2)
 
-## ----eval=FALSE----------------------------------------------------------------------------------------------------------------------------------------------------
+## ----eval=FALSE---------------------------------------------------------------
 #  data(sample_data)
 
-## ----eval=TRUE-----------------------------------------------------------------------------------------------------------------------------------------------------
+## ----eval=TRUE----------------------------------------------------------------
 sample_data
 
-## ----eval=FALSE----------------------------------------------------------------------------------------------------------------------------------------------------
+## ----eval=FALSE---------------------------------------------------------------
 #  # import data from csv file:
 #  mydata <- read.csv("myworksheet.csv")
 #  
@@ -32,18 +32,18 @@ sample_data
 #  mydata <- read.xlsx("myworkbook.xlsx", sheetName="myworksheet")
 #  # see ?read.xlsx for more options
 
-## ----eval=TRUE-----------------------------------------------------------------------------------------------------------------------------------------------------
+## ----eval=TRUE----------------------------------------------------------------
 # check which_PTF to use to predict THS based on the predictor variables available in sample_data
 which_PTF(predictor= sample_data, target = c("THS"))
 
 # check which_PTF to use to predict multiple soil hydraulic properties
 which_PTF(predictor= sample_data, target = c("THS", "FC", "WP", "KS", "VG", "MVG"))
 
-## ----eval=FALSE----------------------------------------------------------------------------------------------------------------------------------------------------
+## ----eval=FALSE---------------------------------------------------------------
 #  data(suggested_PTF)
 #  suggested_PTF
 
-## ----eval=TRUE-----------------------------------------------------------------------------------------------------------------------------------------------------
+## ----eval=TRUE----------------------------------------------------------------
 # predict parameters of the van Genuchten model (VG)
 pred_VG <- euptfFun(ptf = "PTF11", predictor = sample_data, target = "VG", query = "predictions")
 pred_VG
@@ -59,7 +59,7 @@ pred_VG_q.df <- as.data.frame(pred_VG_q)
 pred_MVG <- euptfFun(ptf = "PTF05", predictor = sample_data, target = "MVG", query = "predictions")
 pred_MVG
 
-## ----eval=TRUE-----------------------------------------------------------------------------------------------------------------------------------------------------
+## ----eval=TRUE----------------------------------------------------------------
 # predict saturated water content (THS)
 pred_THS <- euptfFun(ptf = "PTF03", predictor = sample_data, target = "THS", query = "predictions")
 pred_THS
@@ -72,7 +72,7 @@ pred_THS_q
 pred_KS <- euptfFun(ptf = "PTF05", predictor = sample_data, target = "KS", query = "predictions")
 pred_KS
 
-## ----eval=FALSE----------------------------------------------------------------------------------------------------------------------------------------------------
+## ----eval=FALSE---------------------------------------------------------------
 #  # example to save the predicted values to a csv file:
 #  write.csv(pred_THS, file = "pred_THS.csv", row.names = FALSE)
 #  # see ?write.csv for additional options

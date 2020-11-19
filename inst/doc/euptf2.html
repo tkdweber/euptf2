@@ -337,7 +337,11 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <p>The predictions can be performed through the following steps.</p>
 <p>Load the package:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># load the package:</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">library</span>(euptf2)</span></code></pre></div>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">library</span>(euptf2)</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co">#&gt; Lade nötiges Paket: plyr</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#&gt; Lade nötiges Paket: stringr</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="co">#&gt; Lade nötiges Paket: data.table</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co">#&gt; Lade nötiges Paket: ranger</span></span></code></pre></div>
 <p><strong>1. Data preparation</strong> Before using the PTFs you need to format your data so that the package’s functions can access them. An example data frame is provided:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">data</span>(sample_data)</span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>sample_data</span>
@@ -392,17 +396,17 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <span id="cb6-14"><a href="#cb6-14"></a><span class="co">#&gt; </span></span>
 <span id="cb6-15"><a href="#cb6-15"></a><span class="co">#&gt; Use   PTF03   to predict    THS</span></span>
 <span id="cb6-16"><a href="#cb6-16"></a><span class="co">#&gt; </span></span>
-<span id="cb6-17"><a href="#cb6-17"></a><span class="co">#&gt; Use   PTF03   to predict    FC</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a><span class="co">#&gt; Use   PTF07   to predict    FC</span></span>
 <span id="cb6-18"><a href="#cb6-18"></a><span class="co">#&gt; </span></span>
-<span id="cb6-19"><a href="#cb6-19"></a><span class="co">#&gt; Use   PTF01   to predict    WP</span></span>
+<span id="cb6-19"><a href="#cb6-19"></a><span class="co">#&gt; Use   PTF09   to predict    WP</span></span>
 <span id="cb6-20"><a href="#cb6-20"></a><span class="co">#&gt; </span></span>
-<span id="cb6-21"><a href="#cb6-21"></a><span class="co">#&gt; Use   PTF05   to predict    KS</span></span>
+<span id="cb6-21"><a href="#cb6-21"></a><span class="co">#&gt; Use   PTF02   to predict    KS</span></span>
 <span id="cb6-22"><a href="#cb6-22"></a><span class="co">#&gt; </span></span>
-<span id="cb6-23"><a href="#cb6-23"></a><span class="co">#&gt; Use   PTF11   to predict    VG</span></span>
+<span id="cb6-23"><a href="#cb6-23"></a><span class="co">#&gt; Use   PTF29   to predict    VG</span></span>
 <span id="cb6-24"><a href="#cb6-24"></a><span class="co">#&gt; </span></span>
-<span id="cb6-25"><a href="#cb6-25"></a><span class="co">#&gt; Use   PTF23   to predict    MVG</span></span>
+<span id="cb6-25"><a href="#cb6-25"></a><span class="co">#&gt; Use   PTF27   to predict    MVG</span></span>
 <span id="cb6-26"><a href="#cb6-26"></a><span class="co">#&gt;      THS    FC    WP    KS    VG   MVG</span></span>
-<span id="cb6-27"><a href="#cb6-27"></a><span class="co">#&gt; 1: PTF03 PTF03 PTF01 PTF05 PTF11 PTF23</span></span></code></pre></div>
+<span id="cb6-27"><a href="#cb6-27"></a><span class="co">#&gt; 1: PTF03 PTF07 PTF09 PTF02 PTF29 PTF27</span></span></code></pre></div>
 <p>The result is conditional to the provided set of predictor variables such as USSAND, USSILT, USCLAY and DEPTH_M. The suggested_PTF data lists the recommended pedotransfer functions (PTF) by predicted soil hydraulic property and available predictor variables (Table 11 in Szabó et al. (2020)):</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">data</span>(suggested_PTF)</span>
 <span id="cb7-2"><a href="#cb7-2"></a>suggested_PTF</span></code></pre></div>
@@ -411,135 +415,201 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># predict parameters of the van Genuchten model (VG)</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a>pred_VG &lt;-<span class="st"> </span><span class="kw">euptfFun</span>(<span class="dt">ptf =</span> <span class="st">&quot;PTF11&quot;</span>, <span class="dt">predictor =</span> sample_data, <span class="dt">target =</span> <span class="st">&quot;VG&quot;</span>, <span class="dt">query =</span> <span class="st">&quot;predictions&quot;</span>)</span>
 <span id="cb8-3"><a href="#cb8-3"></a>pred_VG</span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="co">#&gt;    OBS_ID THS_PTF11  THR_PTF11   ALP_PTF11  N_PTF11   M_PTF11 OBS_ID SAMPLE_ID DEPTH_M USSAND USSILT USCLAY   OC   BD PH_H2O CACO3  CEC</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="co">#&gt; 1       1 0.4525725 0.02138011 0.003012617 1.220249 0.1804954      1       801    60.0    1.0   53.0   46.0 1.69 1.41    7.9   3.6 43.4</span></span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="co">#&gt; 2       2 0.4694341 0.01969870 0.004956295 1.214478 0.1766010      2       802    20.0    3.4   58.1   38.6 3.16 1.34    7.5   1.9 44.8</span></span>
-<span id="cb8-7"><a href="#cb8-7"></a><span class="co">#&gt; 3       3 0.4096313 0.02323656 0.003081313 1.243543 0.1958462      3       803    62.5    1.1   62.6   36.3 1.00 1.53    8.1   4.6 40.0</span></span>
-<span id="cb8-8"><a href="#cb8-8"></a><span class="co">#&gt; 4       4 0.4346168 0.03499473 0.003032626 1.241919 0.1947943      4       804    22.5    1.4   62.3   36.3 2.46 1.40    7.7   2.3 42.2</span></span>
-<span id="cb8-9"><a href="#cb8-9"></a><span class="co">#&gt; 5       5 0.4264491 0.02076698 0.004206764 1.232170 0.1884237      5       805   105.0    3.4   67.0   29.7 1.20 1.49    8.1   6.0 40.0</span></span>
-<span id="cb8-10"><a href="#cb8-10"></a><span class="co">#&gt; 6       6 0.4658808 0.01429767 0.010254010 1.192185 0.1612041      6       806    30.0    9.0   52.0   38.9 2.42 1.37    7.4   6.0 46.1</span></span>
-<span id="cb8-11"><a href="#cb8-11"></a><span class="co">#&gt; 7       7 0.4333395 0.01646192 0.005642242 1.214627 0.1767022      7       807    90.0    7.8   54.0   38.1 1.00 1.49    7.7  31.0 42.7</span></span>
-<span id="cb8-12"><a href="#cb8-12"></a><span class="co">#&gt; 8       8 0.4394707 0.02453333 0.005462810 1.249553 0.1997141      8       808   150.0   10.6   57.1   32.3 0.60 1.45    7.9  45.0 45.9</span></span>
-<span id="cb8-13"><a href="#cb8-13"></a><span class="co">#&gt; 9       9 0.4198857 0.01049133 0.013029620 1.228008 0.1856732      9       809    25.0   34.9   47.8   17.3 1.20 1.50    7.5   1.3 25.5</span></span>
-<span id="cb8-14"><a href="#cb8-14"></a><span class="co">#&gt; 10     10 0.4057881 0.01088939 0.012772311 1.224139 0.1830994     10       810    10.0   34.3   49.3   16.4 1.27 1.57    7.4   1.3 30.9</span></span>
-<span id="cb8-15"><a href="#cb8-15"></a></span>
-<span id="cb8-16"><a href="#cb8-16"></a><span class="co"># predict VG with predefined quantiles</span></span>
-<span id="cb8-17"><a href="#cb8-17"></a>pred_VG_q &lt;-<span class="st"> </span><span class="kw">euptfFun</span>(<span class="dt">ptf =</span> <span class="st">&quot;PTF11&quot;</span>, <span class="dt">predictor =</span> sample_data, <span class="dt">target =</span> <span class="st">&quot;VG&quot;</span>, <span class="dt">query =</span> <span class="st">&quot;quantiles&quot;</span>, <span class="dt">quantiles =</span> <span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">0.9</span>))</span>
-<span id="cb8-18"><a href="#cb8-18"></a>pred_VG_q</span>
-<span id="cb8-19"><a href="#cb8-19"></a><span class="co">#&gt; $THS_PTF11</span></span>
-<span id="cb8-20"><a href="#cb8-20"></a><span class="co">#&gt;       OLD_ID quantile= 0.1 quantile= 0.5 quantile= 0.9</span></span>
-<span id="cb8-21"><a href="#cb8-21"></a><span class="co">#&gt;  [1,]      1     0.3758036     0.4600403     0.4926723</span></span>
-<span id="cb8-22"><a href="#cb8-22"></a><span class="co">#&gt;  [2,]      2     0.3855742     0.4794434     0.5268559</span></span>
-<span id="cb8-23"><a href="#cb8-23"></a><span class="co">#&gt;  [3,]      3     0.3758036     0.4145375     0.4414298</span></span>
-<span id="cb8-24"><a href="#cb8-24"></a><span class="co">#&gt;  [4,]      4     0.3557563     0.4458334     0.4905164</span></span>
-<span id="cb8-25"><a href="#cb8-25"></a><span class="co">#&gt;  [5,]      5     0.3623991     0.4384784     0.4623176</span></span>
-<span id="cb8-26"><a href="#cb8-26"></a><span class="co">#&gt;  [6,]      6     0.4161750     0.4698349     0.5022655</span></span>
-<span id="cb8-27"><a href="#cb8-27"></a><span class="co">#&gt;  [7,]      7     0.3892791     0.4414298     0.4578957</span></span>
-<span id="cb8-28"><a href="#cb8-28"></a><span class="co">#&gt;  [8,]      8     0.3784891     0.4461427     0.4897307</span></span>
-<span id="cb8-29"><a href="#cb8-29"></a><span class="co">#&gt;  [9,]      9     0.3798153     0.4243993     0.4527968</span></span>
-<span id="cb8-30"><a href="#cb8-30"></a><span class="co">#&gt; [10,]     10     0.3492810     0.4021911     0.4316552</span></span>
-<span id="cb8-31"><a href="#cb8-31"></a><span class="co">#&gt; </span></span>
-<span id="cb8-32"><a href="#cb8-32"></a><span class="co">#&gt; $THR_PTF11</span></span>
-<span id="cb8-33"><a href="#cb8-33"></a><span class="co">#&gt;       OLD_ID quantile= 0.1 quantile= 0.5 quantile= 0.9</span></span>
-<span id="cb8-34"><a href="#cb8-34"></a><span class="co">#&gt;  [1,]      1             0             0    0.13737601</span></span>
-<span id="cb8-35"><a href="#cb8-35"></a><span class="co">#&gt;  [2,]      2             0             0    0.08951102</span></span>
-<span id="cb8-36"><a href="#cb8-36"></a><span class="co">#&gt;  [3,]      3             0             0    0.13677970</span></span>
-<span id="cb8-37"><a href="#cb8-37"></a><span class="co">#&gt;  [4,]      4             0             0    0.15385150</span></span>
-<span id="cb8-38"><a href="#cb8-38"></a><span class="co">#&gt;  [5,]      5             0             0    0.10447500</span></span>
-<span id="cb8-39"><a href="#cb8-39"></a><span class="co">#&gt;  [6,]      6             0             0    0.08205653</span></span>
-<span id="cb8-40"><a href="#cb8-40"></a><span class="co">#&gt;  [7,]      7             0             0    0.06111657</span></span>
-<span id="cb8-41"><a href="#cb8-41"></a><span class="co">#&gt;  [8,]      8             0             0    0.11149946</span></span>
-<span id="cb8-42"><a href="#cb8-42"></a><span class="co">#&gt;  [9,]      9             0             0    0.06661793</span></span>
-<span id="cb8-43"><a href="#cb8-43"></a><span class="co">#&gt; [10,]     10             0             0    0.06661793</span></span>
-<span id="cb8-44"><a href="#cb8-44"></a><span class="co">#&gt; </span></span>
-<span id="cb8-45"><a href="#cb8-45"></a><span class="co">#&gt; $ALP_PTF11</span></span>
-<span id="cb8-46"><a href="#cb8-46"></a><span class="co">#&gt;       OLD_ID quantile= 0.1 quantile= 0.5 quantile= 0.9</span></span>
-<span id="cb8-47"><a href="#cb8-47"></a><span class="co">#&gt;  [1,]      1  0.0004633615   0.004555535    0.03370950</span></span>
-<span id="cb8-48"><a href="#cb8-48"></a><span class="co">#&gt;  [2,]      2  0.0002722474   0.006146634    0.05814848</span></span>
-<span id="cb8-49"><a href="#cb8-49"></a><span class="co">#&gt;  [3,]      3  0.0003149742   0.002374609    0.03255895</span></span>
-<span id="cb8-50"><a href="#cb8-50"></a><span class="co">#&gt;  [4,]      4  0.0003149742   0.002861682    0.02400840</span></span>
-<span id="cb8-51"><a href="#cb8-51"></a><span class="co">#&gt;  [5,]      5  0.0008487525   0.003636789    0.05976881</span></span>
-<span id="cb8-52"><a href="#cb8-52"></a><span class="co">#&gt;  [6,]      6  0.0012824054   0.011559993    0.21629040</span></span>
-<span id="cb8-53"><a href="#cb8-53"></a><span class="co">#&gt;  [7,]      7  0.0007054351   0.006099480    0.02933736</span></span>
-<span id="cb8-54"><a href="#cb8-54"></a><span class="co">#&gt;  [8,]      8  0.0001858580   0.006146634    0.05721784</span></span>
-<span id="cb8-55"><a href="#cb8-55"></a><span class="co">#&gt;  [9,]      9  0.0031507070   0.012641660    0.05814778</span></span>
-<span id="cb8-56"><a href="#cb8-56"></a><span class="co">#&gt; [10,]     10  0.0035562933   0.012564451    0.05635863</span></span>
-<span id="cb8-57"><a href="#cb8-57"></a><span class="co">#&gt; </span></span>
-<span id="cb8-58"><a href="#cb8-58"></a><span class="co">#&gt; $N_PTF11</span></span>
-<span id="cb8-59"><a href="#cb8-59"></a><span class="co">#&gt;       OLD_ID quantile= 0.1 quantile= 0.5 quantile= 0.9</span></span>
-<span id="cb8-60"><a href="#cb8-60"></a><span class="co">#&gt;  [1,]      1      1.084128      1.245593      1.340236</span></span>
-<span id="cb8-61"><a href="#cb8-61"></a><span class="co">#&gt;  [2,]      2      1.106513      1.186037      1.378603</span></span>
-<span id="cb8-62"><a href="#cb8-62"></a><span class="co">#&gt;  [3,]      3      1.107217      1.255302      1.510439</span></span>
-<span id="cb8-63"><a href="#cb8-63"></a><span class="co">#&gt;  [4,]      4      1.111579      1.252936      1.510439</span></span>
-<span id="cb8-64"><a href="#cb8-64"></a><span class="co">#&gt;  [5,]      5      1.108516      1.253372      1.371152</span></span>
-<span id="cb8-65"><a href="#cb8-65"></a><span class="co">#&gt;  [6,]      6      1.088440      1.205171      1.298184</span></span>
-<span id="cb8-66"><a href="#cb8-66"></a><span class="co">#&gt;  [7,]      7      1.090876      1.200842      1.481073</span></span>
-<span id="cb8-67"><a href="#cb8-67"></a><span class="co">#&gt;  [8,]      8      1.113091      1.229774      1.481073</span></span>
-<span id="cb8-68"><a href="#cb8-68"></a><span class="co">#&gt;  [9,]      9      1.130530      1.232723      1.302176</span></span>
-<span id="cb8-69"><a href="#cb8-69"></a><span class="co">#&gt; [10,]     10      1.142623      1.226641      1.301559</span></span>
-<span id="cb8-70"><a href="#cb8-70"></a></span>
-<span id="cb8-71"><a href="#cb8-71"></a><span class="co"># please note that output is list, can be formatted to data frame:</span></span>
-<span id="cb8-72"><a href="#cb8-72"></a>pred_VG_q.df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(pred_VG_q)</span>
-<span id="cb8-73"><a href="#cb8-73"></a></span>
-<span id="cb8-74"><a href="#cb8-74"></a><span class="co"># predict parameters of the Mualem-van Genuchten model (MVG)</span></span>
-<span id="cb8-75"><a href="#cb8-75"></a>pred_MVG &lt;-<span class="st"> </span><span class="kw">euptfFun</span>(<span class="dt">ptf =</span> <span class="st">&quot;PTF05&quot;</span>, <span class="dt">predictor =</span> sample_data, <span class="dt">target =</span> <span class="st">&quot;MVG&quot;</span>, <span class="dt">query =</span> <span class="st">&quot;predictions&quot;</span>)</span>
-<span id="cb8-76"><a href="#cb8-76"></a>pred_MVG</span>
-<span id="cb8-77"><a href="#cb8-77"></a><span class="co">#&gt;    OBS_ID THS_PTF05  THR_PTF05  ALP_PTF05  N_PTF05  K0_PTF05   L_PTF05   M_PTF05 OBS_ID SAMPLE_ID DEPTH_M USSAND USSILT USCLAY   OC   BD PH_H2O CACO3  CEC</span></span>
-<span id="cb8-78"><a href="#cb8-78"></a><span class="co">#&gt; 1       1 0.5125947 0.03910288 0.07190149 1.114352 136.86973 -4.442060 0.1026173      1       801    60.0    1.0   53.0   46.0 1.69 1.41    7.9   3.6 43.4</span></span>
-<span id="cb8-79"><a href="#cb8-79"></a><span class="co">#&gt; 2       2 0.5163581 0.04085018 0.05396194 1.133638  99.44281 -2.960080 0.1178841      2       802    20.0    3.4   58.1   38.6 3.16 1.34    7.5   1.9 44.8</span></span>
-<span id="cb8-80"><a href="#cb8-80"></a><span class="co">#&gt; 3       3 0.4972545 0.04984928 0.04619772 1.156112  71.30923 -4.229289 0.1350322      3       803    62.5    1.1   62.6   36.3 1.00 1.53    8.1   4.6 40.0</span></span>
-<span id="cb8-81"><a href="#cb8-81"></a><span class="co">#&gt; 4       4 0.5169550 0.04388186 0.04929935 1.157375  98.41656 -4.065015 0.1359758      4       804    22.5    1.4   62.3   36.3 2.46 1.40    7.7   2.3 42.2</span></span>
-<span id="cb8-82"><a href="#cb8-82"></a><span class="co">#&gt; 5       5 0.4779253 0.04769280 0.02599210 1.165111  50.97020 -4.050940 0.1417130      5       805   105.0    3.4   67.0   29.7 1.20 1.49    8.1   6.0 40.0</span></span>
-<span id="cb8-83"><a href="#cb8-83"></a><span class="co">#&gt; 6       6 0.4998801 0.03988877 0.05230811 1.137353  68.69971 -2.878928 0.1207654      6       806    30.0    9.0   52.0   38.9 2.42 1.37    7.4   6.0 46.1</span></span>
-<span id="cb8-84"><a href="#cb8-84"></a><span class="co">#&gt; 7       7 0.4752784 0.04689760 0.03474308 1.147174  43.34225 -3.965977 0.1282929      7       807    90.0    7.8   54.0   38.1 1.00 1.49    7.7  31.0 42.7</span></span>
-<span id="cb8-85"><a href="#cb8-85"></a><span class="co">#&gt; 8       8 0.4580555 0.06105130 0.02318105 1.178909  30.31429 -3.689226 0.1517581      8       808   150.0   10.6   57.1   32.3 0.60 1.45    7.9  45.0 45.9</span></span>
-<span id="cb8-86"><a href="#cb8-86"></a><span class="co">#&gt; 9       9 0.4351635 0.06942873 0.02563644 1.231165  35.15156 -2.951609 0.1877610      9       809    25.0   34.9   47.8   17.3 1.20 1.50    7.5   1.3 25.5</span></span>
-<span id="cb8-87"><a href="#cb8-87"></a><span class="co">#&gt; 10     10 0.4535633 0.07993340 0.02792337 1.324397  40.88664 -1.996218 0.2449396     10       810    10.0   34.3   49.3   16.4 1.27 1.57    7.4   1.3 30.9</span></span></code></pre></div>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="co">#&gt;    OBS_ID THS_PTF11  THR_PTF11   ALP_PTF11  N_PTF11   M_PTF11 OBS_ID SAMPLE_ID</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="co">#&gt; 1       1 0.4525725 0.02138011 0.003012617 1.220249 0.1804954      1       801</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="co">#&gt; 2       2 0.4694341 0.01969870 0.004956295 1.214478 0.1766010      2       802</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="co">#&gt; 3       3 0.4096313 0.02323656 0.003081313 1.243543 0.1958462      3       803</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a><span class="co">#&gt; 4       4 0.4346168 0.03499473 0.003032626 1.241919 0.1947943      4       804</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a><span class="co">#&gt; 5       5 0.4264491 0.02076698 0.004206764 1.232170 0.1884237      5       805</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a><span class="co">#&gt; 6       6 0.4658808 0.01429767 0.010254010 1.192185 0.1612041      6       806</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a><span class="co">#&gt; 7       7 0.4333395 0.01646192 0.005642242 1.214627 0.1767022      7       807</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a><span class="co">#&gt; 8       8 0.4394707 0.02453333 0.005462810 1.249553 0.1997141      8       808</span></span>
+<span id="cb8-13"><a href="#cb8-13"></a><span class="co">#&gt; 9       9 0.4198857 0.01049133 0.013029620 1.228008 0.1856732      9       809</span></span>
+<span id="cb8-14"><a href="#cb8-14"></a><span class="co">#&gt; 10     10 0.4057881 0.01088939 0.012772311 1.224139 0.1830994     10       810</span></span>
+<span id="cb8-15"><a href="#cb8-15"></a><span class="co">#&gt;    DEPTH_M USSAND USSILT USCLAY   OC   BD PH_H2O CACO3  CEC</span></span>
+<span id="cb8-16"><a href="#cb8-16"></a><span class="co">#&gt; 1     60.0    1.0   53.0   46.0 1.69 1.41    7.9   3.6 43.4</span></span>
+<span id="cb8-17"><a href="#cb8-17"></a><span class="co">#&gt; 2     20.0    3.4   58.1   38.6 3.16 1.34    7.5   1.9 44.8</span></span>
+<span id="cb8-18"><a href="#cb8-18"></a><span class="co">#&gt; 3     62.5    1.1   62.6   36.3 1.00 1.53    8.1   4.6 40.0</span></span>
+<span id="cb8-19"><a href="#cb8-19"></a><span class="co">#&gt; 4     22.5    1.4   62.3   36.3 2.46 1.40    7.7   2.3 42.2</span></span>
+<span id="cb8-20"><a href="#cb8-20"></a><span class="co">#&gt; 5    105.0    3.4   67.0   29.7 1.20 1.49    8.1   6.0 40.0</span></span>
+<span id="cb8-21"><a href="#cb8-21"></a><span class="co">#&gt; 6     30.0    9.0   52.0   38.9 2.42 1.37    7.4   6.0 46.1</span></span>
+<span id="cb8-22"><a href="#cb8-22"></a><span class="co">#&gt; 7     90.0    7.8   54.0   38.1 1.00 1.49    7.7  31.0 42.7</span></span>
+<span id="cb8-23"><a href="#cb8-23"></a><span class="co">#&gt; 8    150.0   10.6   57.1   32.3 0.60 1.45    7.9  45.0 45.9</span></span>
+<span id="cb8-24"><a href="#cb8-24"></a><span class="co">#&gt; 9     25.0   34.9   47.8   17.3 1.20 1.50    7.5   1.3 25.5</span></span>
+<span id="cb8-25"><a href="#cb8-25"></a><span class="co">#&gt; 10    10.0   34.3   49.3   16.4 1.27 1.57    7.4   1.3 30.9</span></span>
+<span id="cb8-26"><a href="#cb8-26"></a></span>
+<span id="cb8-27"><a href="#cb8-27"></a><span class="co"># predict VG with predefined quantiles</span></span>
+<span id="cb8-28"><a href="#cb8-28"></a>pred_VG_q &lt;-<span class="st"> </span><span class="kw">euptfFun</span>(<span class="dt">ptf =</span> <span class="st">&quot;PTF11&quot;</span>, <span class="dt">predictor =</span> sample_data, <span class="dt">target =</span> <span class="st">&quot;VG&quot;</span>, <span class="dt">query =</span> <span class="st">&quot;quantiles&quot;</span>, <span class="dt">quantiles =</span> <span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">0.9</span>))</span>
+<span id="cb8-29"><a href="#cb8-29"></a>pred_VG_q</span>
+<span id="cb8-30"><a href="#cb8-30"></a><span class="co">#&gt; $THS_PTF11</span></span>
+<span id="cb8-31"><a href="#cb8-31"></a><span class="co">#&gt;       OLD_ID quantile= 0.1 quantile= 0.5 quantile= 0.9</span></span>
+<span id="cb8-32"><a href="#cb8-32"></a><span class="co">#&gt;  [1,]      1     0.3758036     0.4600403     0.4926723</span></span>
+<span id="cb8-33"><a href="#cb8-33"></a><span class="co">#&gt;  [2,]      2     0.3855742     0.4794434     0.5268559</span></span>
+<span id="cb8-34"><a href="#cb8-34"></a><span class="co">#&gt;  [3,]      3     0.3758036     0.4145375     0.4414298</span></span>
+<span id="cb8-35"><a href="#cb8-35"></a><span class="co">#&gt;  [4,]      4     0.3557563     0.4458334     0.4905164</span></span>
+<span id="cb8-36"><a href="#cb8-36"></a><span class="co">#&gt;  [5,]      5     0.3623991     0.4384784     0.4623176</span></span>
+<span id="cb8-37"><a href="#cb8-37"></a><span class="co">#&gt;  [6,]      6     0.4161750     0.4698349     0.5022655</span></span>
+<span id="cb8-38"><a href="#cb8-38"></a><span class="co">#&gt;  [7,]      7     0.3892791     0.4414298     0.4578957</span></span>
+<span id="cb8-39"><a href="#cb8-39"></a><span class="co">#&gt;  [8,]      8     0.3784891     0.4461427     0.4897307</span></span>
+<span id="cb8-40"><a href="#cb8-40"></a><span class="co">#&gt;  [9,]      9     0.3798153     0.4243993     0.4527968</span></span>
+<span id="cb8-41"><a href="#cb8-41"></a><span class="co">#&gt; [10,]     10     0.3492810     0.4021911     0.4316552</span></span>
+<span id="cb8-42"><a href="#cb8-42"></a><span class="co">#&gt; </span></span>
+<span id="cb8-43"><a href="#cb8-43"></a><span class="co">#&gt; $THR_PTF11</span></span>
+<span id="cb8-44"><a href="#cb8-44"></a><span class="co">#&gt;       OLD_ID quantile= 0.1 quantile= 0.5 quantile= 0.9</span></span>
+<span id="cb8-45"><a href="#cb8-45"></a><span class="co">#&gt;  [1,]      1             0             0    0.13737601</span></span>
+<span id="cb8-46"><a href="#cb8-46"></a><span class="co">#&gt;  [2,]      2             0             0    0.08951102</span></span>
+<span id="cb8-47"><a href="#cb8-47"></a><span class="co">#&gt;  [3,]      3             0             0    0.13677970</span></span>
+<span id="cb8-48"><a href="#cb8-48"></a><span class="co">#&gt;  [4,]      4             0             0    0.15385150</span></span>
+<span id="cb8-49"><a href="#cb8-49"></a><span class="co">#&gt;  [5,]      5             0             0    0.10447500</span></span>
+<span id="cb8-50"><a href="#cb8-50"></a><span class="co">#&gt;  [6,]      6             0             0    0.08205653</span></span>
+<span id="cb8-51"><a href="#cb8-51"></a><span class="co">#&gt;  [7,]      7             0             0    0.06111657</span></span>
+<span id="cb8-52"><a href="#cb8-52"></a><span class="co">#&gt;  [8,]      8             0             0    0.11149946</span></span>
+<span id="cb8-53"><a href="#cb8-53"></a><span class="co">#&gt;  [9,]      9             0             0    0.06661793</span></span>
+<span id="cb8-54"><a href="#cb8-54"></a><span class="co">#&gt; [10,]     10             0             0    0.06661793</span></span>
+<span id="cb8-55"><a href="#cb8-55"></a><span class="co">#&gt; </span></span>
+<span id="cb8-56"><a href="#cb8-56"></a><span class="co">#&gt; $ALP_PTF11</span></span>
+<span id="cb8-57"><a href="#cb8-57"></a><span class="co">#&gt;       OLD_ID quantile= 0.1 quantile= 0.5 quantile= 0.9</span></span>
+<span id="cb8-58"><a href="#cb8-58"></a><span class="co">#&gt;  [1,]      1  0.0004633615   0.004555535    0.03370950</span></span>
+<span id="cb8-59"><a href="#cb8-59"></a><span class="co">#&gt;  [2,]      2  0.0002722474   0.006146634    0.05814848</span></span>
+<span id="cb8-60"><a href="#cb8-60"></a><span class="co">#&gt;  [3,]      3  0.0003149742   0.002374609    0.03255895</span></span>
+<span id="cb8-61"><a href="#cb8-61"></a><span class="co">#&gt;  [4,]      4  0.0003149742   0.002861682    0.02400840</span></span>
+<span id="cb8-62"><a href="#cb8-62"></a><span class="co">#&gt;  [5,]      5  0.0008487525   0.003636789    0.05976881</span></span>
+<span id="cb8-63"><a href="#cb8-63"></a><span class="co">#&gt;  [6,]      6  0.0012824054   0.011559993    0.21629040</span></span>
+<span id="cb8-64"><a href="#cb8-64"></a><span class="co">#&gt;  [7,]      7  0.0007054351   0.006099480    0.02933736</span></span>
+<span id="cb8-65"><a href="#cb8-65"></a><span class="co">#&gt;  [8,]      8  0.0001858580   0.006146634    0.05721784</span></span>
+<span id="cb8-66"><a href="#cb8-66"></a><span class="co">#&gt;  [9,]      9  0.0031507070   0.012641660    0.05814778</span></span>
+<span id="cb8-67"><a href="#cb8-67"></a><span class="co">#&gt; [10,]     10  0.0035562933   0.012564451    0.05635863</span></span>
+<span id="cb8-68"><a href="#cb8-68"></a><span class="co">#&gt; </span></span>
+<span id="cb8-69"><a href="#cb8-69"></a><span class="co">#&gt; $N_PTF11</span></span>
+<span id="cb8-70"><a href="#cb8-70"></a><span class="co">#&gt;       OLD_ID quantile= 0.1 quantile= 0.5 quantile= 0.9</span></span>
+<span id="cb8-71"><a href="#cb8-71"></a><span class="co">#&gt;  [1,]      1      1.084128      1.245593      1.340236</span></span>
+<span id="cb8-72"><a href="#cb8-72"></a><span class="co">#&gt;  [2,]      2      1.106513      1.186037      1.378603</span></span>
+<span id="cb8-73"><a href="#cb8-73"></a><span class="co">#&gt;  [3,]      3      1.107217      1.255302      1.510439</span></span>
+<span id="cb8-74"><a href="#cb8-74"></a><span class="co">#&gt;  [4,]      4      1.111579      1.252936      1.510439</span></span>
+<span id="cb8-75"><a href="#cb8-75"></a><span class="co">#&gt;  [5,]      5      1.108516      1.253372      1.371152</span></span>
+<span id="cb8-76"><a href="#cb8-76"></a><span class="co">#&gt;  [6,]      6      1.088440      1.205171      1.298184</span></span>
+<span id="cb8-77"><a href="#cb8-77"></a><span class="co">#&gt;  [7,]      7      1.090876      1.200842      1.481073</span></span>
+<span id="cb8-78"><a href="#cb8-78"></a><span class="co">#&gt;  [8,]      8      1.113091      1.229774      1.481073</span></span>
+<span id="cb8-79"><a href="#cb8-79"></a><span class="co">#&gt;  [9,]      9      1.130530      1.232723      1.302176</span></span>
+<span id="cb8-80"><a href="#cb8-80"></a><span class="co">#&gt; [10,]     10      1.142623      1.226641      1.301559</span></span>
+<span id="cb8-81"><a href="#cb8-81"></a></span>
+<span id="cb8-82"><a href="#cb8-82"></a><span class="co"># please note that output is list, can be formatted to data frame:</span></span>
+<span id="cb8-83"><a href="#cb8-83"></a>pred_VG_q.df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(pred_VG_q)</span>
+<span id="cb8-84"><a href="#cb8-84"></a></span>
+<span id="cb8-85"><a href="#cb8-85"></a><span class="co"># predict parameters of the Mualem-van Genuchten model (MVG)</span></span>
+<span id="cb8-86"><a href="#cb8-86"></a>pred_MVG &lt;-<span class="st"> </span><span class="kw">euptfFun</span>(<span class="dt">ptf =</span> <span class="st">&quot;PTF05&quot;</span>, <span class="dt">predictor =</span> sample_data, <span class="dt">target =</span> <span class="st">&quot;MVG&quot;</span>, <span class="dt">query =</span> <span class="st">&quot;predictions&quot;</span>)</span>
+<span id="cb8-87"><a href="#cb8-87"></a>pred_MVG</span>
+<span id="cb8-88"><a href="#cb8-88"></a><span class="co">#&gt;    OBS_ID THS_PTF05  THR_PTF05  ALP_PTF05  N_PTF05  K0_PTF05   L_PTF05</span></span>
+<span id="cb8-89"><a href="#cb8-89"></a><span class="co">#&gt; 1       1 0.5125947 0.03910288 0.07190149 1.114352 136.86973 -4.442060</span></span>
+<span id="cb8-90"><a href="#cb8-90"></a><span class="co">#&gt; 2       2 0.5163581 0.04085018 0.05396194 1.133638  99.44281 -2.960080</span></span>
+<span id="cb8-91"><a href="#cb8-91"></a><span class="co">#&gt; 3       3 0.4972545 0.04984928 0.04619772 1.156112  71.30923 -4.229289</span></span>
+<span id="cb8-92"><a href="#cb8-92"></a><span class="co">#&gt; 4       4 0.5169550 0.04388186 0.04929935 1.157375  98.41656 -4.065015</span></span>
+<span id="cb8-93"><a href="#cb8-93"></a><span class="co">#&gt; 5       5 0.4779253 0.04769280 0.02599210 1.165111  50.97020 -4.050940</span></span>
+<span id="cb8-94"><a href="#cb8-94"></a><span class="co">#&gt; 6       6 0.4998801 0.03988877 0.05230811 1.137353  68.69971 -2.878928</span></span>
+<span id="cb8-95"><a href="#cb8-95"></a><span class="co">#&gt; 7       7 0.4752784 0.04689760 0.03474308 1.147174  43.34225 -3.965977</span></span>
+<span id="cb8-96"><a href="#cb8-96"></a><span class="co">#&gt; 8       8 0.4580555 0.06105130 0.02318105 1.178909  30.31429 -3.689226</span></span>
+<span id="cb8-97"><a href="#cb8-97"></a><span class="co">#&gt; 9       9 0.4351635 0.06942873 0.02563644 1.231165  35.15156 -2.951609</span></span>
+<span id="cb8-98"><a href="#cb8-98"></a><span class="co">#&gt; 10     10 0.4535633 0.07993340 0.02792337 1.324397  40.88664 -1.996218</span></span>
+<span id="cb8-99"><a href="#cb8-99"></a><span class="co">#&gt;      M_PTF05 OBS_ID SAMPLE_ID DEPTH_M USSAND USSILT USCLAY   OC   BD PH_H2O</span></span>
+<span id="cb8-100"><a href="#cb8-100"></a><span class="co">#&gt; 1  0.1026173      1       801    60.0    1.0   53.0   46.0 1.69 1.41    7.9</span></span>
+<span id="cb8-101"><a href="#cb8-101"></a><span class="co">#&gt; 2  0.1178841      2       802    20.0    3.4   58.1   38.6 3.16 1.34    7.5</span></span>
+<span id="cb8-102"><a href="#cb8-102"></a><span class="co">#&gt; 3  0.1350322      3       803    62.5    1.1   62.6   36.3 1.00 1.53    8.1</span></span>
+<span id="cb8-103"><a href="#cb8-103"></a><span class="co">#&gt; 4  0.1359758      4       804    22.5    1.4   62.3   36.3 2.46 1.40    7.7</span></span>
+<span id="cb8-104"><a href="#cb8-104"></a><span class="co">#&gt; 5  0.1417130      5       805   105.0    3.4   67.0   29.7 1.20 1.49    8.1</span></span>
+<span id="cb8-105"><a href="#cb8-105"></a><span class="co">#&gt; 6  0.1207654      6       806    30.0    9.0   52.0   38.9 2.42 1.37    7.4</span></span>
+<span id="cb8-106"><a href="#cb8-106"></a><span class="co">#&gt; 7  0.1282929      7       807    90.0    7.8   54.0   38.1 1.00 1.49    7.7</span></span>
+<span id="cb8-107"><a href="#cb8-107"></a><span class="co">#&gt; 8  0.1517581      8       808   150.0   10.6   57.1   32.3 0.60 1.45    7.9</span></span>
+<span id="cb8-108"><a href="#cb8-108"></a><span class="co">#&gt; 9  0.1877610      9       809    25.0   34.9   47.8   17.3 1.20 1.50    7.5</span></span>
+<span id="cb8-109"><a href="#cb8-109"></a><span class="co">#&gt; 10 0.2449396     10       810    10.0   34.3   49.3   16.4 1.27 1.57    7.4</span></span>
+<span id="cb8-110"><a href="#cb8-110"></a><span class="co">#&gt;    CACO3  CEC</span></span>
+<span id="cb8-111"><a href="#cb8-111"></a><span class="co">#&gt; 1    3.6 43.4</span></span>
+<span id="cb8-112"><a href="#cb8-112"></a><span class="co">#&gt; 2    1.9 44.8</span></span>
+<span id="cb8-113"><a href="#cb8-113"></a><span class="co">#&gt; 3    4.6 40.0</span></span>
+<span id="cb8-114"><a href="#cb8-114"></a><span class="co">#&gt; 4    2.3 42.2</span></span>
+<span id="cb8-115"><a href="#cb8-115"></a><span class="co">#&gt; 5    6.0 40.0</span></span>
+<span id="cb8-116"><a href="#cb8-116"></a><span class="co">#&gt; 6    6.0 46.1</span></span>
+<span id="cb8-117"><a href="#cb8-117"></a><span class="co">#&gt; 7   31.0 42.7</span></span>
+<span id="cb8-118"><a href="#cb8-118"></a><span class="co">#&gt; 8   45.0 45.9</span></span>
+<span id="cb8-119"><a href="#cb8-119"></a><span class="co">#&gt; 9    1.3 25.5</span></span>
+<span id="cb8-120"><a href="#cb8-120"></a><span class="co">#&gt; 10   1.3 30.9</span></span></code></pre></div>
 <p>Point estimation:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># predict saturated water content (THS)</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a>pred_THS &lt;-<span class="st"> </span><span class="kw">euptfFun</span>(<span class="dt">ptf =</span> <span class="st">&quot;PTF03&quot;</span>, <span class="dt">predictor =</span> sample_data, <span class="dt">target =</span> <span class="st">&quot;THS&quot;</span>, <span class="dt">query =</span> <span class="st">&quot;predictions&quot;</span>)</span>
 <span id="cb9-3"><a href="#cb9-3"></a>pred_THS</span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="co">#&gt;    THS_PTF03 OBS_ID SAMPLE_ID DEPTH_M USSAND USSILT USCLAY   OC   BD PH_H2O CACO3  CEC</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="co">#&gt; 1  0.4680155      1       801    60.0    1.0   53.0   46.0 1.69 1.41    7.9   3.6 43.4</span></span>
-<span id="cb9-6"><a href="#cb9-6"></a><span class="co">#&gt; 2  0.4837732      2       802    20.0    3.4   58.1   38.6 3.16 1.34    7.5   1.9 44.8</span></span>
-<span id="cb9-7"><a href="#cb9-7"></a><span class="co">#&gt; 3  0.4324118      3       803    62.5    1.1   62.6   36.3 1.00 1.53    8.1   4.6 40.0</span></span>
-<span id="cb9-8"><a href="#cb9-8"></a><span class="co">#&gt; 4  0.4716993      4       804    22.5    1.4   62.3   36.3 2.46 1.40    7.7   2.3 42.2</span></span>
-<span id="cb9-9"><a href="#cb9-9"></a><span class="co">#&gt; 5  0.4484716      5       805   105.0    3.4   67.0   29.7 1.20 1.49    8.1   6.0 40.0</span></span>
-<span id="cb9-10"><a href="#cb9-10"></a><span class="co">#&gt; 6  0.4845906      6       806    30.0    9.0   52.0   38.9 2.42 1.37    7.4   6.0 46.1</span></span>
-<span id="cb9-11"><a href="#cb9-11"></a><span class="co">#&gt; 7  0.4388267      7       807    90.0    7.8   54.0   38.1 1.00 1.49    7.7  31.0 42.7</span></span>
-<span id="cb9-12"><a href="#cb9-12"></a><span class="co">#&gt; 8  0.4502922      8       808   150.0   10.6   57.1   32.3 0.60 1.45    7.9  45.0 45.9</span></span>
-<span id="cb9-13"><a href="#cb9-13"></a><span class="co">#&gt; 9  0.4453103      9       809    25.0   34.9   47.8   17.3 1.20 1.50    7.5   1.3 25.5</span></span>
-<span id="cb9-14"><a href="#cb9-14"></a><span class="co">#&gt; 10 0.4057250     10       810    10.0   34.3   49.3   16.4 1.27 1.57    7.4   1.3 30.9</span></span>
-<span id="cb9-15"><a href="#cb9-15"></a></span>
-<span id="cb9-16"><a href="#cb9-16"></a><span class="co"># predict THS with predefined quantiles</span></span>
-<span id="cb9-17"><a href="#cb9-17"></a>pred_THS_q &lt;-<span class="st"> </span><span class="kw">euptfFun</span>(<span class="dt">ptf =</span> <span class="st">&quot;PTF03&quot;</span>, <span class="dt">predictor =</span> sample_data, <span class="dt">target =</span> <span class="st">&quot;THS&quot;</span>, <span class="dt">query =</span> <span class="st">&quot;quantiles&quot;</span>, <span class="dt">quantiles =</span> <span class="kw">c</span>(<span class="fl">0.05</span>, <span class="fl">0.5</span>, <span class="fl">0.95</span>))</span>
-<span id="cb9-18"><a href="#cb9-18"></a>pred_THS_q</span>
-<span id="cb9-19"><a href="#cb9-19"></a><span class="co">#&gt;    THS_PTF03_quantile= 0.05 THS_PTF03_quantile= 0.5 THS_PTF03_quantile= 0.95 OBS_ID SAMPLE_ID DEPTH_M USSAND USSILT USCLAY   OC   BD PH_H2O CACO3  CEC</span></span>
-<span id="cb9-20"><a href="#cb9-20"></a><span class="co">#&gt; 1                   0.43260                  0.4650                  0.52210      1       801    60.0    1.0   53.0   46.0 1.69 1.41    7.9   3.6 43.4</span></span>
-<span id="cb9-21"><a href="#cb9-21"></a><span class="co">#&gt; 2                   0.37200                  0.4890                  0.51500      2       802    20.0    3.4   58.1   38.6 3.16 1.34    7.5   1.9 44.8</span></span>
-<span id="cb9-22"><a href="#cb9-22"></a><span class="co">#&gt; 3                   0.40000                  0.4360                  0.46600      3       803    62.5    1.1   62.6   36.3 1.00 1.53    8.1   4.6 40.0</span></span>
-<span id="cb9-23"><a href="#cb9-23"></a><span class="co">#&gt; 4                   0.43775                  0.4710                  0.49965      4       804    22.5    1.4   62.3   36.3 2.46 1.40    7.7   2.3 42.2</span></span>
-<span id="cb9-24"><a href="#cb9-24"></a><span class="co">#&gt; 5                   0.41975                  0.4415                  0.47600      5       805   105.0    3.4   67.0   29.7 1.20 1.49    8.1   6.0 40.0</span></span>
-<span id="cb9-25"><a href="#cb9-25"></a><span class="co">#&gt; 6                   0.45555                  0.4840                  0.52600      6       806    30.0    9.0   52.0   38.9 2.42 1.37    7.4   6.0 46.1</span></span>
-<span id="cb9-26"><a href="#cb9-26"></a><span class="co">#&gt; 7                   0.40500                  0.4370                  0.46600      7       807    90.0    7.8   54.0   38.1 1.00 1.49    7.7  31.0 42.7</span></span>
-<span id="cb9-27"><a href="#cb9-27"></a><span class="co">#&gt; 8                   0.42295                  0.4510                  0.48900      8       808   150.0   10.6   57.1   32.3 0.60 1.45    7.9  45.0 45.9</span></span>
-<span id="cb9-28"><a href="#cb9-28"></a><span class="co">#&gt; 9                   0.39182                  0.4500                  0.47000      9       809    25.0   34.9   47.8   17.3 1.20 1.50    7.5   1.3 25.5</span></span>
-<span id="cb9-29"><a href="#cb9-29"></a><span class="co">#&gt; 10                  0.37085                  0.4030                  0.45218     10       810    10.0   34.3   49.3   16.4 1.27 1.57    7.4   1.3 30.9</span></span>
-<span id="cb9-30"><a href="#cb9-30"></a></span>
-<span id="cb9-31"><a href="#cb9-31"></a><span class="co"># predict saturated hydraulic conductivity (KS)</span></span>
-<span id="cb9-32"><a href="#cb9-32"></a>pred_KS &lt;-<span class="st"> </span><span class="kw">euptfFun</span>(<span class="dt">ptf =</span> <span class="st">&quot;PTF05&quot;</span>, <span class="dt">predictor =</span> sample_data, <span class="dt">target =</span> <span class="st">&quot;KS&quot;</span>, <span class="dt">query =</span> <span class="st">&quot;predictions&quot;</span>)</span>
-<span id="cb9-33"><a href="#cb9-33"></a>pred_KS</span>
-<span id="cb9-34"><a href="#cb9-34"></a><span class="co">#&gt;      KS_PTF05 OBS_ID SAMPLE_ID DEPTH_M USSAND USSILT USCLAY   OC   BD PH_H2O CACO3  CEC</span></span>
-<span id="cb9-35"><a href="#cb9-35"></a><span class="co">#&gt; 1    4.298604      1       801    60.0    1.0   53.0   46.0 1.69 1.41    7.9   3.6 43.4</span></span>
-<span id="cb9-36"><a href="#cb9-36"></a><span class="co">#&gt; 2    2.800375      2       802    20.0    3.4   58.1   38.6 3.16 1.34    7.5   1.9 44.8</span></span>
-<span id="cb9-37"><a href="#cb9-37"></a><span class="co">#&gt; 3    4.357384      3       803    62.5    1.1   62.6   36.3 1.00 1.53    8.1   4.6 40.0</span></span>
-<span id="cb9-38"><a href="#cb9-38"></a><span class="co">#&gt; 4    4.397835      4       804    22.5    1.4   62.3   36.3 2.46 1.40    7.7   2.3 42.2</span></span>
-<span id="cb9-39"><a href="#cb9-39"></a><span class="co">#&gt; 5    3.522154      5       805   105.0    3.4   67.0   29.7 1.20 1.49    8.1   6.0 40.0</span></span>
-<span id="cb9-40"><a href="#cb9-40"></a><span class="co">#&gt; 6    3.632902      6       806    30.0    9.0   52.0   38.9 2.42 1.37    7.4   6.0 46.1</span></span>
-<span id="cb9-41"><a href="#cb9-41"></a><span class="co">#&gt; 7    1.967128      7       807    90.0    7.8   54.0   38.1 1.00 1.49    7.7  31.0 42.7</span></span>
-<span id="cb9-42"><a href="#cb9-42"></a><span class="co">#&gt; 8    7.497750      8       808   150.0   10.6   57.1   32.3 0.60 1.45    7.9  45.0 45.9</span></span>
-<span id="cb9-43"><a href="#cb9-43"></a><span class="co">#&gt; 9   66.198044      9       809    25.0   34.9   47.8   17.3 1.20 1.50    7.5   1.3 25.5</span></span>
-<span id="cb9-44"><a href="#cb9-44"></a><span class="co">#&gt; 10 118.422040     10       810    10.0   34.3   49.3   16.4 1.27 1.57    7.4   1.3 30.9</span></span></code></pre></div>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="co">#&gt;    THS_PTF03 OBS_ID SAMPLE_ID DEPTH_M USSAND USSILT USCLAY   OC   BD PH_H2O</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="co">#&gt; 1  0.4680155      1       801    60.0    1.0   53.0   46.0 1.69 1.41    7.9</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a><span class="co">#&gt; 2  0.4837732      2       802    20.0    3.4   58.1   38.6 3.16 1.34    7.5</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a><span class="co">#&gt; 3  0.4324118      3       803    62.5    1.1   62.6   36.3 1.00 1.53    8.1</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a><span class="co">#&gt; 4  0.4716993      4       804    22.5    1.4   62.3   36.3 2.46 1.40    7.7</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a><span class="co">#&gt; 5  0.4484716      5       805   105.0    3.4   67.0   29.7 1.20 1.49    8.1</span></span>
+<span id="cb9-10"><a href="#cb9-10"></a><span class="co">#&gt; 6  0.4845906      6       806    30.0    9.0   52.0   38.9 2.42 1.37    7.4</span></span>
+<span id="cb9-11"><a href="#cb9-11"></a><span class="co">#&gt; 7  0.4388267      7       807    90.0    7.8   54.0   38.1 1.00 1.49    7.7</span></span>
+<span id="cb9-12"><a href="#cb9-12"></a><span class="co">#&gt; 8  0.4502922      8       808   150.0   10.6   57.1   32.3 0.60 1.45    7.9</span></span>
+<span id="cb9-13"><a href="#cb9-13"></a><span class="co">#&gt; 9  0.4453103      9       809    25.0   34.9   47.8   17.3 1.20 1.50    7.5</span></span>
+<span id="cb9-14"><a href="#cb9-14"></a><span class="co">#&gt; 10 0.4057250     10       810    10.0   34.3   49.3   16.4 1.27 1.57    7.4</span></span>
+<span id="cb9-15"><a href="#cb9-15"></a><span class="co">#&gt;    CACO3  CEC</span></span>
+<span id="cb9-16"><a href="#cb9-16"></a><span class="co">#&gt; 1    3.6 43.4</span></span>
+<span id="cb9-17"><a href="#cb9-17"></a><span class="co">#&gt; 2    1.9 44.8</span></span>
+<span id="cb9-18"><a href="#cb9-18"></a><span class="co">#&gt; 3    4.6 40.0</span></span>
+<span id="cb9-19"><a href="#cb9-19"></a><span class="co">#&gt; 4    2.3 42.2</span></span>
+<span id="cb9-20"><a href="#cb9-20"></a><span class="co">#&gt; 5    6.0 40.0</span></span>
+<span id="cb9-21"><a href="#cb9-21"></a><span class="co">#&gt; 6    6.0 46.1</span></span>
+<span id="cb9-22"><a href="#cb9-22"></a><span class="co">#&gt; 7   31.0 42.7</span></span>
+<span id="cb9-23"><a href="#cb9-23"></a><span class="co">#&gt; 8   45.0 45.9</span></span>
+<span id="cb9-24"><a href="#cb9-24"></a><span class="co">#&gt; 9    1.3 25.5</span></span>
+<span id="cb9-25"><a href="#cb9-25"></a><span class="co">#&gt; 10   1.3 30.9</span></span>
+<span id="cb9-26"><a href="#cb9-26"></a></span>
+<span id="cb9-27"><a href="#cb9-27"></a><span class="co"># predict THS with predefined quantiles</span></span>
+<span id="cb9-28"><a href="#cb9-28"></a>pred_THS_q &lt;-<span class="st"> </span><span class="kw">euptfFun</span>(<span class="dt">ptf =</span> <span class="st">&quot;PTF03&quot;</span>, <span class="dt">predictor =</span> sample_data, <span class="dt">target =</span> <span class="st">&quot;THS&quot;</span>, <span class="dt">query =</span> <span class="st">&quot;quantiles&quot;</span>, <span class="dt">quantiles =</span> <span class="kw">c</span>(<span class="fl">0.05</span>, <span class="fl">0.5</span>, <span class="fl">0.95</span>))</span>
+<span id="cb9-29"><a href="#cb9-29"></a>pred_THS_q</span>
+<span id="cb9-30"><a href="#cb9-30"></a><span class="co">#&gt;    THS_PTF03_quantile= 0.05 THS_PTF03_quantile= 0.5 THS_PTF03_quantile= 0.95</span></span>
+<span id="cb9-31"><a href="#cb9-31"></a><span class="co">#&gt; 1                   0.43260                  0.4650                  0.52210</span></span>
+<span id="cb9-32"><a href="#cb9-32"></a><span class="co">#&gt; 2                   0.37200                  0.4890                  0.51500</span></span>
+<span id="cb9-33"><a href="#cb9-33"></a><span class="co">#&gt; 3                   0.40000                  0.4360                  0.46600</span></span>
+<span id="cb9-34"><a href="#cb9-34"></a><span class="co">#&gt; 4                   0.43775                  0.4710                  0.49965</span></span>
+<span id="cb9-35"><a href="#cb9-35"></a><span class="co">#&gt; 5                   0.41975                  0.4415                  0.47600</span></span>
+<span id="cb9-36"><a href="#cb9-36"></a><span class="co">#&gt; 6                   0.45555                  0.4840                  0.52600</span></span>
+<span id="cb9-37"><a href="#cb9-37"></a><span class="co">#&gt; 7                   0.40500                  0.4370                  0.46600</span></span>
+<span id="cb9-38"><a href="#cb9-38"></a><span class="co">#&gt; 8                   0.42295                  0.4510                  0.48900</span></span>
+<span id="cb9-39"><a href="#cb9-39"></a><span class="co">#&gt; 9                   0.39182                  0.4500                  0.47000</span></span>
+<span id="cb9-40"><a href="#cb9-40"></a><span class="co">#&gt; 10                  0.37085                  0.4030                  0.45218</span></span>
+<span id="cb9-41"><a href="#cb9-41"></a><span class="co">#&gt;    OBS_ID SAMPLE_ID DEPTH_M USSAND USSILT USCLAY   OC   BD PH_H2O CACO3  CEC</span></span>
+<span id="cb9-42"><a href="#cb9-42"></a><span class="co">#&gt; 1       1       801    60.0    1.0   53.0   46.0 1.69 1.41    7.9   3.6 43.4</span></span>
+<span id="cb9-43"><a href="#cb9-43"></a><span class="co">#&gt; 2       2       802    20.0    3.4   58.1   38.6 3.16 1.34    7.5   1.9 44.8</span></span>
+<span id="cb9-44"><a href="#cb9-44"></a><span class="co">#&gt; 3       3       803    62.5    1.1   62.6   36.3 1.00 1.53    8.1   4.6 40.0</span></span>
+<span id="cb9-45"><a href="#cb9-45"></a><span class="co">#&gt; 4       4       804    22.5    1.4   62.3   36.3 2.46 1.40    7.7   2.3 42.2</span></span>
+<span id="cb9-46"><a href="#cb9-46"></a><span class="co">#&gt; 5       5       805   105.0    3.4   67.0   29.7 1.20 1.49    8.1   6.0 40.0</span></span>
+<span id="cb9-47"><a href="#cb9-47"></a><span class="co">#&gt; 6       6       806    30.0    9.0   52.0   38.9 2.42 1.37    7.4   6.0 46.1</span></span>
+<span id="cb9-48"><a href="#cb9-48"></a><span class="co">#&gt; 7       7       807    90.0    7.8   54.0   38.1 1.00 1.49    7.7  31.0 42.7</span></span>
+<span id="cb9-49"><a href="#cb9-49"></a><span class="co">#&gt; 8       8       808   150.0   10.6   57.1   32.3 0.60 1.45    7.9  45.0 45.9</span></span>
+<span id="cb9-50"><a href="#cb9-50"></a><span class="co">#&gt; 9       9       809    25.0   34.9   47.8   17.3 1.20 1.50    7.5   1.3 25.5</span></span>
+<span id="cb9-51"><a href="#cb9-51"></a><span class="co">#&gt; 10     10       810    10.0   34.3   49.3   16.4 1.27 1.57    7.4   1.3 30.9</span></span>
+<span id="cb9-52"><a href="#cb9-52"></a></span>
+<span id="cb9-53"><a href="#cb9-53"></a><span class="co"># predict saturated hydraulic conductivity (KS)</span></span>
+<span id="cb9-54"><a href="#cb9-54"></a>pred_KS &lt;-<span class="st"> </span><span class="kw">euptfFun</span>(<span class="dt">ptf =</span> <span class="st">&quot;PTF05&quot;</span>, <span class="dt">predictor =</span> sample_data, <span class="dt">target =</span> <span class="st">&quot;KS&quot;</span>, <span class="dt">query =</span> <span class="st">&quot;predictions&quot;</span>)</span>
+<span id="cb9-55"><a href="#cb9-55"></a>pred_KS</span>
+<span id="cb9-56"><a href="#cb9-56"></a><span class="co">#&gt;      KS_PTF05 OBS_ID SAMPLE_ID DEPTH_M USSAND USSILT USCLAY   OC   BD PH_H2O</span></span>
+<span id="cb9-57"><a href="#cb9-57"></a><span class="co">#&gt; 1    4.298604      1       801    60.0    1.0   53.0   46.0 1.69 1.41    7.9</span></span>
+<span id="cb9-58"><a href="#cb9-58"></a><span class="co">#&gt; 2    2.800375      2       802    20.0    3.4   58.1   38.6 3.16 1.34    7.5</span></span>
+<span id="cb9-59"><a href="#cb9-59"></a><span class="co">#&gt; 3    4.357384      3       803    62.5    1.1   62.6   36.3 1.00 1.53    8.1</span></span>
+<span id="cb9-60"><a href="#cb9-60"></a><span class="co">#&gt; 4    4.397835      4       804    22.5    1.4   62.3   36.3 2.46 1.40    7.7</span></span>
+<span id="cb9-61"><a href="#cb9-61"></a><span class="co">#&gt; 5    3.522154      5       805   105.0    3.4   67.0   29.7 1.20 1.49    8.1</span></span>
+<span id="cb9-62"><a href="#cb9-62"></a><span class="co">#&gt; 6    3.632902      6       806    30.0    9.0   52.0   38.9 2.42 1.37    7.4</span></span>
+<span id="cb9-63"><a href="#cb9-63"></a><span class="co">#&gt; 7    1.967128      7       807    90.0    7.8   54.0   38.1 1.00 1.49    7.7</span></span>
+<span id="cb9-64"><a href="#cb9-64"></a><span class="co">#&gt; 8    7.497750      8       808   150.0   10.6   57.1   32.3 0.60 1.45    7.9</span></span>
+<span id="cb9-65"><a href="#cb9-65"></a><span class="co">#&gt; 9   66.198044      9       809    25.0   34.9   47.8   17.3 1.20 1.50    7.5</span></span>
+<span id="cb9-66"><a href="#cb9-66"></a><span class="co">#&gt; 10 118.422040     10       810    10.0   34.3   49.3   16.4 1.27 1.57    7.4</span></span>
+<span id="cb9-67"><a href="#cb9-67"></a><span class="co">#&gt;    CACO3  CEC</span></span>
+<span id="cb9-68"><a href="#cb9-68"></a><span class="co">#&gt; 1    3.6 43.4</span></span>
+<span id="cb9-69"><a href="#cb9-69"></a><span class="co">#&gt; 2    1.9 44.8</span></span>
+<span id="cb9-70"><a href="#cb9-70"></a><span class="co">#&gt; 3    4.6 40.0</span></span>
+<span id="cb9-71"><a href="#cb9-71"></a><span class="co">#&gt; 4    2.3 42.2</span></span>
+<span id="cb9-72"><a href="#cb9-72"></a><span class="co">#&gt; 5    6.0 40.0</span></span>
+<span id="cb9-73"><a href="#cb9-73"></a><span class="co">#&gt; 6    6.0 46.1</span></span>
+<span id="cb9-74"><a href="#cb9-74"></a><span class="co">#&gt; 7   31.0 42.7</span></span>
+<span id="cb9-75"><a href="#cb9-75"></a><span class="co">#&gt; 8   45.0 45.9</span></span>
+<span id="cb9-76"><a href="#cb9-76"></a><span class="co">#&gt; 9    1.3 25.5</span></span>
+<span id="cb9-77"><a href="#cb9-77"></a><span class="co">#&gt; 10   1.3 30.9</span></span></code></pre></div>
 <p><strong>4. Exporting the results</strong> For non-R users, the results can be exported for use with other software, either as text files or directly in Excel. For example, the two ways of predicting the saturated water content can be exported as a table:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># example to save the predicted values to a csv file:</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a><span class="kw">write.csv</span>(pred_THS, <span class="dt">file =</span> <span class="st">&quot;pred_THS.csv&quot;</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</span>
