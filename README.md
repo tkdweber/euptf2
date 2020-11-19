@@ -21,8 +21,7 @@ The package contains a sample input dataset
 ```{r eval=FALSE}
 data(sample_data)
 ```
-and a vignette (https://github.com/tkdweber/euptf2/tree/master/vignettes)
-
+and a [vignette](https://github.com/tkdweber/euptf2/tree/master/vignettes)
 ```{r eval=FALSE}
 vignette("euptf2")
 ```
