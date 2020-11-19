@@ -2,17 +2,11 @@
 #'
 #' @param ptf A character specifying the ptf. Permissible are "PTF01" "PTF02", ...., "PTF32".
 #' @param predictor A data.frame or data.table of dimension \code{m x n}, with \code{m} observations and \code{n} predictor variables.
-#' The column names specify the names of the predictor variables. At least \code{DEPTH_M} and \code{USSAND},\code{USSILT}, \code{USCLAY} have to be provided.
-#' If in doubt, which PTF to select, use the function \code{which_PTF} first, to determine the suggested ptf, based on the available predictor variable.
-#' (insert cross reference to the function, here.)
-#'
-#' @param target A vector of length \code{1} specifying the target variables to be predicted.
-#'
-#'      > insert table of which ones are available < or do that in details
-#'
-#' @param query either "predictions" to compute the mean of the response variable or "quantiles" which results quantile prediction to describe uncertainty of the prediction.
-#' @param target one of the soil hydraulic parameters: "THS", "FC_2", "FC", "WP", "AWC_2", "AWC", "KS", "VG", "MVG".
-#' @param quantiles a vector of numeric values for calculating the quantiles at 
+#' The column names specify the names of the predictor variables. At least \emph{DEPTH_M} and \emph{USSAND},\emph{USSILT}, \emph{USCLAY} have to be provided.
+#' If in doubt, which PTF to select, use the function \link[euptf2]{which_PTF} first, to determine the suggested ptf, based on the available predictor variable.
+#' @param target one of the soil hydraulic parameters: \emph{THS}, \emph{FC_2}, \emph{FC}, \emph{WP}, \emph{AWC_2}, \emph{AWC}, \emph{KS}, \emph{VG}, or \emph{MVG}.
+#' @param query either \emph{predictions} to compute the mean of the response variable or \emph{quantiles} which results in quantile predictions to describe uncertainty of the prediction.
+#' @param quantiles a vector of numeric values for calculating the quantiles at
 #' @return
 #'  \itemize{
 #'         \item a data.frame with predicted target variables if no quantiles are predicted.
