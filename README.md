@@ -11,7 +11,7 @@ The development version of the package can be installed from GitHub after openin
 if (!require("devtools")){install.packages("devtools"); library(devtools)}
 if (!require("euptf2")){devtools::install_github("tkdweber/euptf2"); library(euptf2)}
 ```
-Please note that Rtools.exe has to be installed from , if not done before.
+Please note that Rtools.exe is needed to build packages under R >= 4.0.0. It has to be installed from https://cran.r-project.org/bin/windows/Rtools/, if not done before.
 
 The content of the package can be made available by loading it into the R session:
 
