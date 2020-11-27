@@ -9,7 +9,7 @@ citEntry(
   doi         = '10.5194/gmd-2020-36',
   textVersion = paste('Szabó, Brigitta; Weynants, Melanie and Weber, Tobias Karl David (2020),',
 		'Updated European hydraulic pedotransfer functions with communicated uncertainties in the predicted variables (euptfv2).',
-		'Geoscientific Model Development.','10.5194/gmd-2020-36')
+		'Geoscientific Model Development','10.5194/gmd-2020-36')
 )
 
 citEntry(entry='Manual',
