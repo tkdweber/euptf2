@@ -7,7 +7,7 @@ The euptf package  provides  pedotransfer  functions  (PTFs) for  the  predictio
 The development version of the package can be installed from GitHub after opening an R session and typing the following at the command line:
 
 ```{r eval=FALSE}
-# install the devtools and Rdpack packages if not yet done:
+# install the devtools, glue and Rdpack packages if not yet done:
 install.packages("devtools")
 install.packages("glue")
 install.packages("Rdpack")
