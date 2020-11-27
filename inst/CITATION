@@ -18,10 +18,12 @@ citEntry(entry='Manual',
          year  = '2020',
          note  = 'R package',
 	       url = 'https://github.com/tkdweber/euptf2',
+	 doi         = '10.5281/zenodo.4281045',      
 
          textVersion =
 	 paste('Tobias Karl David Weber, Melanie Weynants and Brigitta Szabó (2020).',
 	       'R package of updated European hydraulic pedotransfer functions (euptf2)',
                'R package',
-	       'URL https://github.com/tkdweber/euptf2')
+	       'URL https://github.com/tkdweber/euptf2'),
+	       '10.5281/zenodo.4281045'
 )
