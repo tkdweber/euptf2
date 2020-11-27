@@ -7,11 +7,12 @@ The euptf package  provides  pedotransfer  functions  (PTFs) for  the  predictio
 The development version of the package can be installed from GitHub after opening an R session and typing the following at the command line:
 
 ```{r eval=FALSE}
-# install the devtools package if not yet done:
-if (!require("devtools")){install.packages("devtools"); library(devtools)}
-if (!require("euptf2")){devtools::install_github("tkdweber/euptf2"); library(euptf2)}
+# install the devtools and Rdpack packages if not yet done:
+install.packages("devtools")
+install.packages("Rdpack")
+devtools::install_github("tkdweber/euptf2")
 ```
-Please note that Rtools.exe is needed to build packages under R >= 4.0.0. It has to be installed from https://cran.r-project.org/bin/windows/Rtools/, if not done before.
+Please note that Rtools.exe is needed to build packages under R >= 4.0.0. It has to be installed from https://cran.r-project.org/bin/windows/Rtools/, if not done before. If package or namespace load fails please install the problamatic package separately.
 
 The content of the package can be made available by loading it into the R session:
 
