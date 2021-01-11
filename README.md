@@ -29,6 +29,19 @@ shows some examples on how to apply the PTFs in R.
 
 Alternatively, a web interface (https://ptfinterface.rissac.hu) facilitates easy application of the updated prediction algorithms, too. The R scripts used to train, tune, and build the updated European prediction random forest algorithms are available from [here](https://github.com/TothSzaboBrigitta/euptfv2).
 
+***Practical guidance on how to use the PTFs***
+
+The minimum input requirements for all PTFs are sand, silt and clay content, and soil depth. Soil depth is defined as the mean sampling depth, e.g. if PSD, BD and OC are provided for a soil sample from a depth of 0–20 cm, then the soil depth input (DEPTH) to the prediction algorithm is set to 10 cm.
+If only soil texture information is available for the predictions, the class PTFs from euptfv1 could be applied (Tóth et al., 2015).
+
+We emphasize that:
+1. the units of input soil properties (predictors) have to be the same as indicated in the text and that the sand, silt, and clay are defined by the following particle diameters: clay< 2 μm, silt between 2 and 50 μm, and sand between 50 and 2000 μm, 20
+2. when only specific water content values at saturation, field capacity or wilting point are required (i.e. THS, FC_2, FC, WP) it is recommended to use point PTFs. This is also true for the prediction of KS,
+3. for AWC, the most accurate way is to predict FC and WP with the point predictions, first, and then compute AWC using Eq. (1), and similarly for AWC_2 using FC_2 and Eq. (2),
+4. it is recommended to do the VG prediction if only moisture retention curve parameters are needed, and
+5. the MVG prediction when both moisture retention and hydraulic conductivity parameters are required.
+
+
 ***Please cite as:***
 
 Szabó, B., Weynants, M. and Weber, T. K. D. (2020) Updated European hydraulic pedotransfer functions with communicated uncertainties in the predicted variables (euptfv2). Geoscientific Model Development Discussions, 2020, 1–33. [doi: 10.5194/gmd-2020-36](https://doi.org/10.5194/gmd-2020-36).
