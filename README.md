@@ -1,15 +1,20 @@
 # euptf2
 **R package of updated European hydraulic pedotransfer functions (euptf2)**
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4281046.svg)](https://doi.org/10.5281/zenodo.4281046)
 
 The euptf package  provides  pedotransfer  functions  (PTFs) for  the  prediction  of  hydraulic  properties in  European  soils. The  PTFs  were  trained  and  validated  on  subsets  of  the  European  Hydropedological Data Inventory (Weynants et al., 2013, EU-HYDI). The methodology and the results are published in the Journal Geoscientific Model Development (Szabó et al., 2021).
 
 The development version of the package can be installed from GitHub after opening an R session and typing the following at the command line:
 
 ```{r eval=FALSE}
-# install the devtools package if not yet done:
-if (!require("devtools")){install.packages("devtools"); library(devtools)}
-if (!require("euptf2")){devtools::install_github("tkdweber/euptf2"); library(euptf2)}
+# install the devtools, glue and Rdpack packages if not yet done:
+install.packages("devtools")
+install.packages("glue")
+install.packages("Rdpack")
+devtools::install_github("tkdweber/euptf2")
 ```
+Please note that Rtools.exe is needed to build packages under R >= 4.0.0. It has to be installed from https://cran.r-project.org/bin/windows/Rtools/, if not done before. If any packages or namespaces load fail please install the problematic package(s) separately.
+
 The content of the package can be made available by loading it into the R session:
 
 ```{r eval=FALSE}
@@ -46,7 +51,7 @@ We emphasize that:
 
 Szabó, B., Weynants, M. and Weber, T. K. D. (2021) Updated European hydraulic pedotransfer functions with communicated uncertainties in the predicted variables (euptfv2). Geoscientific Model Development, 14, 151–175 [doi: 10.5194/gmd-14-151-2021](https://doi.org/10.5194/gmd-14-151-2021).
 
-Weber, T. K. D., Weynants, M., Szabó, B. (2020) R package of updated European hydraulic pedotransfer functions (euptf2).
+Weber, T. K. D., Weynants, M., Szabó, B. (2020) R package of updated European hydraulic pedotransfer functions (euptf2). [doi: 10.5281/zenodo.4281045](https://doi.org/10.5281/zenodo.4281045).
 
 
 *References:*
