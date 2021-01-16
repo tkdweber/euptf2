@@ -2,7 +2,7 @@
 **R package of updated European hydraulic pedotransfer functions (euptf2)**
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4281046.svg)](https://doi.org/10.5281/zenodo.4281046)
 
-The euptf package  provides  pedotransfer  functions  (PTFs) for  the  prediction  of  hydraulic  properties in  European  soils. The  PTFs  were  trained  and  validated  on  subsets  of  the  European  Hydropedological Data Inventory (Weynants et al., 2013, EU-HYDI). The methodology and the results are published in the Journal Geoscientific Model Development (Szabó et al., 2020).
+The euptf package  provides  pedotransfer  functions  (PTFs) for  the  prediction  of  hydraulic  properties in  European  soils. The  PTFs  were  trained  and  validated  on  subsets  of  the  European  Hydropedological Data Inventory (Weynants et al., 2013, EU-HYDI). The methodology and the results are published in the Journal Geoscientific Model Development (Szabó et al., 2021).
 
 The development version of the package can be installed from GitHub after opening an R session and typing the following at the command line:
 
@@ -49,7 +49,7 @@ We emphasize that:
 
 ***Please cite as:***
 
-Szabó, B., Weynants, M. and Weber, T. K. D. (2020) Updated European hydraulic pedotransfer functions with communicated uncertainties in the predicted variables (euptfv2). Geoscientific Model Development, 1–33. [doi: 10.5194/gmd-2020-36](https://doi.org/10.5194/gmd-2020-36).
+Szabó, B., Weynants, M. and Weber, T. K. D. (2021) Updated European hydraulic pedotransfer functions with communicated uncertainties in the predicted variables (euptfv2). Geoscientific Model Development, 14, 151–175 [doi: 10.5194/gmd-14-151-2021](https://doi.org/10.5194/gmd-14-151-2021).
 
 Weber, T. K. D., Weynants, M., Szabó, B. (2020) R package of updated European hydraulic pedotransfer functions (euptf2). [doi: 10.5281/zenodo.4281045](https://doi.org/10.5281/zenodo.4281045).
 
